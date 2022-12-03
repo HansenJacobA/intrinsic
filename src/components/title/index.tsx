@@ -9,7 +9,17 @@ export default function Title() {
           textDecoration: "none",
         }}
       >
-        <Heading as="h1" size="xl" noOfLines={1} textAlign="center" m={8}>
+        <Heading
+          as="h1"
+          size="xl"
+          noOfLines={1}
+          textAlign="center"
+          pb={7}
+          pt={8}
+          w="100vw"
+          bgColor="#272D33"
+          color="white"
+        >
           Intr🙏nsic
         </Heading>
       </Link>

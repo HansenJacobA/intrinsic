@@ -12,15 +12,16 @@ export default function NavBar() {
       p={3}
       bgColor="#E6DDCB"
       color="black"
+      mb={10}
     >
-      <NextLink href="/mood" passHref>
+      <NextLink href="/history" passHref>
         <Link
           textDecoration="none"
           _hover={{
             textDecoration: "underline",
           }}
         >
-          Mood
+          History
         </Link>
       </NextLink>
       <NextLink href="/daily-goal" passHref>

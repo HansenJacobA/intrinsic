@@ -11,23 +11,17 @@ export default function Template() {
   }, []);
 
   return (
-    <Flex
-      justify="center"
-      align="center"
-      direction="column"
-      bgColor="#272D33"
-      color="white"
-    >
+    <Flex justify="center" align="center" direction="column">
       <Head>
         <title>Intr🙏nsic</title>
         <meta property="og:title" content="Intr🙏nsic" key="title" />
         <meta
           name="description"
-          content="A daily progress tracker to document accomplishments. Can be used to maintain daily organization of work tasks and or accomplishment reflections for performance evaluations."
+          content="Turn your thoughts, moods, and daily goals into an organized library to facilitate structure, stability, organization, and peace.."
         />
         <meta
           name="keywords"
-          content="work tracker progress organization daily records reflection evaluations promotions"
+          content="personal development journal reflection progress goal mood"
         />
         <link rel="manifest" href="app.webmanifest" />
         <link rel="apple-touch-icon" href="/icons/icon-512.png" />

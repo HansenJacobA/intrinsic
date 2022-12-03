@@ -1,5 +1,5 @@
 import Template from "../../components/template";
-import Welcome from "../../components/welcome";
+import Welcome from "../../components/greeting";
 import { Flex } from "@chakra-ui/react";
 
 export default function RemakeHistory() {

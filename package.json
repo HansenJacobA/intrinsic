@@ -1,5 +1,5 @@
 {
-  "name": "tworker",
+  "name": "intrinsic",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.12",
-    "@chakra-ui/react": "^2.3.6",
+    "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "eslint-plugin-jsx-a11y": "^6.6.1",
@@ -31,5 +31,25 @@
     "eslint-plugin-react": "^7.31.11",
     "typescript": "^4.9.3"
   },
-  "type": "module"
+  "type": "module",
+  "description": "Turn your thoughts, moods, and daily goals into an organized library to facilitate structure, stability, organization, and peace..",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HansenJacobA/intrinsic.git"
+  },
+  "keywords": [
+    "personal",
+    "journal",
+    "development",
+    "journey",
+    "goals",
+    "aspiration"
+  ],
+  "author": "Jacob Hansen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HansenJacobA/intrinsic/issues"
+  },
+  "homepage": "https://github.com/HansenJacobA/intrinsic#readme"
 }
