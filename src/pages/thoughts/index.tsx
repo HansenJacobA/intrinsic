@@ -1,12 +1,12 @@
 import Template from "../../components/template";
-import Welcome from "../../components/greeting";
 import { Flex } from "@chakra-ui/react";
+import Thought from "../../components/thought";
 
 export default function Thoughts() {
   return (
     <Flex justify="center" align="center" direction="column">
       <Template />
-      <Welcome />
+      <Thought />
     </Flex>
   );
 }

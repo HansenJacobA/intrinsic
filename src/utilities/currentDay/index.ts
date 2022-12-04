@@ -12,8 +12,11 @@ export const getCurrentDayAndMonth = () => {
 export const getCurrentDayData = () => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
-  const dayData = history[currentMonth][currentDay];
-  return getValueByKey(dayData);
+  const dayID =
+    history[currentMonth] && history[currentMonth][currentDay]
+      ? history[currentMonth][currentDay]
+      : "";
+  return getValueByKey(dayID);
 };
 
 export const upsertDay = (newCurrentDayData: Day): string => {
@@ -38,6 +41,7 @@ export const upsertDay = (newCurrentDayData: Day): string => {
 export const upsertHistory = (newCurrentDayDataID: string) => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
-  history[currentMonth][currentDay] = newCurrentDayDataID;
+  if (history && history[currentMonth])
+    history[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey("history", history);
 };
