@@ -11,6 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { Day } from "../../types";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
 import { upsertThought } from "../../utilities/thought";
 

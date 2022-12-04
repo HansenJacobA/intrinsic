@@ -3,6 +3,7 @@ import { Button, Card, CardBody, Flex, Text } from "@chakra-ui/react";
 import Greeting from "../greeting";
 import { moodOptions, upsertMood } from "../../utilities/mood";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
+import { Day } from "../../types";
 
 export default function Mood() {
   const [mood, setMood] = useState("");

@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { Thought } from "../../types";
 
 export const upsertThought = (thought: string): Thought => {
   return {

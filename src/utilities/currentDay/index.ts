@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 

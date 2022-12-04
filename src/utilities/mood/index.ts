@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { Day, Mood } from "../../types";
 
 export const moodOptions = [
   { emoji: "😁", description: "happy" },
