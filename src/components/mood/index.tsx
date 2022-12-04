@@ -37,7 +37,7 @@ export default function Mood() {
               How are you feeling today?
             </Text>
             <Flex align="center" justify="center" direction="column">
-              {moodOptions.map(({ emoji, description }: Mood) => {
+              {moodOptions.map(({ emoji, description }) => {
                 return (
                   <Button
                     key={description}
