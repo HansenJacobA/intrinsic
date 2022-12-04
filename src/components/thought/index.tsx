@@ -20,9 +20,7 @@ export default function Thought() {
 
   useEffect(() => {
     const dayData = getCurrentDayData();
-    if (dayData) {
-      setCurrentDayData(dayData);
-    }
+    setCurrentDayData(dayData);
   }, []);
 
   return (
@@ -44,14 +42,12 @@ export default function Thought() {
             createdAt: new Date().toLocaleString(),
             updatedAt: new Date().toLocaleString(),
           };
-          const newCurrentDayData = currentDayData?.thoughts
-            ? {
-                ...currentDayData,
-                thoughts: [thought, ...currentDayData.thoughts],
-              }
-            : { thoughts: [thought] };
+          const newCurrentDayData = { ...currentDayData };
+          newCurrentDayData.thoughts = currentDayData?.thoughts?.length
+            ? [thought, ...currentDayData.thoughts]
+            : [thought];
           upsertDay(newCurrentDayData);
-          setCurrentDayData(newCurrentDayData);
+          //   setCurrentDayData(newCurrentDayData);
           setCurrentThought("");
         }}
       >
@@ -59,13 +55,13 @@ export default function Thought() {
       </Button>
 
       <Accordion allowMultiple width="100%">
-        {currentDayData?.thoughts?.map(({ thought }, index) => {
+        {currentDayData?.thoughts?.map(({ thought }) => {
           return (
             <AccordionItem key={thought}>
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    {index + 1}
+                    ☁️
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>

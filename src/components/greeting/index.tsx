@@ -2,10 +2,12 @@ import { Flex, Text } from "@chakra-ui/react";
 
 export default function Greeting() {
   const timeNow = new Date().toLocaleTimeString().split(" ");
+  const amPm = timeNow.pop();
+  const hour = parseInt(timeNow.shift());
   const greeting =
-    timeNow.pop() === "AM"
+    amPm === "AM"
       ? "Good morning,"
-      : parseInt(timeNow.shift()) < 5
+      : hour < 5 || hour === 12
       ? "Good afternoon,"
       : "Good evening,";
   return (

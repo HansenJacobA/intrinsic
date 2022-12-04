@@ -12,19 +12,13 @@ export const getCurrentDayAndMonth = () => {
 export const getCurrentDayData = () => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
-  const dayID =
-    history[currentMonth] && history[currentMonth][currentDay]
-      ? history[currentMonth][currentDay]
-      : "";
+  const dayID = history[currentMonth][currentDay];
   return getValueByKey(dayID);
 };
 
 export const upsertDay = (newCurrentDayData: Day): string => {
   if (newCurrentDayData.id) {
-    newCurrentDayData = {
-      ...newCurrentDayData,
-      updatedAt: new Date().toLocaleString(),
-    };
+    newCurrentDayData.updatedAt = new Date().toLocaleString();
   } else {
     newCurrentDayData = {
       id: nanoid(),
