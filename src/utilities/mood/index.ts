@@ -21,5 +21,17 @@ export const createMood = (emoji: string, description: string) => {
     emoji,
     description,
     createdAt: new Date().toLocaleString(),
+    updatedAt: new Date().toLocaleString(),
   };
+};
+
+export const upsertMood = (currentDayData, emoji, description) => {
+  return currentDayData.mood
+    ? {
+        ...currentDayData.mood,
+        emoji,
+        description,
+        updatedAt: new Date().toLocaleString(),
+      }
+    : createMood(emoji, description);
 };

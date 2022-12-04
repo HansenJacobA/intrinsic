@@ -4,44 +4,40 @@ import setValueByKey from "../setValueByKey";
 
 export const getCurrentDayAndMonth = () => {
   return {
-    currentDay: new Date().getDay(),
-    currentMonth: new Date().getMonth(),
+    currentDay: new Date().getDate(),
+    currentMonth: new Date().getMonth() + 1,
   };
 };
 
-export const getDayData = () => {
+export const getCurrentDayData = () => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
   const dayData = history[currentMonth][currentDay];
-  return dayData;
+  return getValueByKey(dayData);
 };
 
-export const upsertDay = (update: { mood: Mood }): string => {
-  let day = getDayData();
-
-  if (day) {
-    day = {
-      ...day,
-      ...update,
+export const upsertDay = (newCurrentDayData: Day): string => {
+  if (newCurrentDayData.id) {
+    newCurrentDayData = {
+      ...newCurrentDayData,
       updatedAt: new Date().toLocaleString(),
     };
-    setValueByKey(day.id, day);
   } else {
-    day = {
+    newCurrentDayData = {
       id: nanoid(),
-      ...update,
+      ...newCurrentDayData,
       createdAt: new Date().toLocaleString(),
       updatedAt: new Date().toLocaleString(),
     };
-    upsertHistory(day);
+    upsertHistory(newCurrentDayData.id);
   }
-
-  return day.id;
+  setValueByKey(newCurrentDayData.id, newCurrentDayData);
+  return newCurrentDayData.id;
 };
 
-export const upsertHistory = (day) => {
+export const upsertHistory = (newCurrentDayDataID: string) => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
-  history[currentMonth][currentDay] = day;
+  history[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey("history", history);
 };
