@@ -1,6 +1,6 @@
 export default function setValueByKey(
   key: string,
-  value: Topic | Post[] | Record<string, never>
+  value: Record<string, never>
 ): void {
   localStorage.setItem(key, JSON.stringify(value));
 }
