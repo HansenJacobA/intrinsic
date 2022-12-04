@@ -10,18 +10,19 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
-import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
+import { upsertThought } from "../../utilities/thought";
 
 export default function Thought() {
-  const [currentDayData, setCurrentDayData] = useState<Day>();
+  const [currentDayData, setCurrentDayData] = useState<Day>({ thoughts: [] });
   const [currentThought, setCurrentThought] = useState("");
+  const [newThoughtSubmitted, setNewThoughtSubmitted] = useState(false);
 
   useEffect(() => {
     const dayData = getCurrentDayData();
     setCurrentDayData(dayData);
-  }, []);
+  }, [newThoughtSubmitted]);
 
   return (
     <Flex w={350} align="center" direction="column" gap={5}>
@@ -36,32 +37,33 @@ export default function Thought() {
       />
       <Button
         onClick={function storeThought() {
-          const thought = {
-            id: nanoid(),
-            thought: currentThought,
-            createdAt: new Date().toLocaleString(),
-            updatedAt: new Date().toLocaleString(),
-          };
+          const createdThought = upsertThought(currentThought);
           const newCurrentDayData = { ...currentDayData };
-          newCurrentDayData.thoughts = currentDayData?.thoughts?.length
-            ? [thought, ...currentDayData.thoughts]
-            : [thought];
+          newCurrentDayData.thoughts = [
+            createdThought,
+            ...currentDayData.thoughts,
+          ];
           upsertDay(newCurrentDayData);
-          //   setCurrentDayData(newCurrentDayData);
           setCurrentThought("");
+          setNewThoughtSubmitted(!newThoughtSubmitted);
         }}
       >
         Save
       </Button>
 
       <Accordion allowMultiple width="100%">
-        {currentDayData?.thoughts?.map(({ thought }) => {
+        {currentDayData.thoughts.map(({ thought, createdAt }) => {
           return (
             <AccordionItem key={thought}>
               <h2>
                 <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    ☁️
+                  <Box
+                    flex="1"
+                    textAlign="left"
+                    fontWeight="light"
+                    fontSize="sm"
+                  >
+                    ☁️ {createdAt.split(",").pop()} ☁️
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>

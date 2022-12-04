@@ -15,7 +15,7 @@ export const moodOptions = [
   { emoji: "🤔", description: "pensive" },
 ];
 
-export const createMood = (emoji: string, description: string) => {
+export const createMood = (emoji: string, description: string): Mood => {
   return {
     id: nanoid(),
     emoji,
@@ -25,8 +25,12 @@ export const createMood = (emoji: string, description: string) => {
   };
 };
 
-export const upsertMood = (currentDayData, emoji, description) => {
-  return currentDayData.mood
+export const upsertMood = (
+  currentDayData: Day,
+  emoji: string,
+  description: string
+): Mood => {
+  return currentDayData.mood.emoji
     ? {
         ...currentDayData.mood,
         emoji,

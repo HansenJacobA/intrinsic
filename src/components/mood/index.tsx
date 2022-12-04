@@ -11,8 +11,8 @@ export default function Mood() {
 
   useEffect(() => {
     const dayData = getCurrentDayData();
-    if (dayData?.mood) {
-      setCurrentDayData(dayData);
+    setCurrentDayData(dayData);
+    if (dayData.mood.emoji) {
       setMood(dayData.mood.emoji);
       setMoodSelected(true);
     }
@@ -61,12 +61,16 @@ export default function Mood() {
                       setMood(emoji);
                       setMoodSelected(true);
 
+                      const newMood = upsertMood(
+                        currentDayData,
+                        emoji,
+                        description
+                      );
                       const newCurrentDayData = {
                         ...currentDayData,
-                        mood: upsertMood(currentDayData, emoji, description),
+                        mood: newMood,
                       };
 
-                      setCurrentDayData(newCurrentDayData);
                       upsertDay(newCurrentDayData);
                     }}
                   >
