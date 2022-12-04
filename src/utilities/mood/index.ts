@@ -1,4 +1,4 @@
-export const moodOptions: Moods[] = [
+export const moodOptions: Mood[] = [
   { emoji: "😁", description: "happy" },
   { emoji: "😌", description: "peaceful" },
   { emoji: "🤓", description: "studious" },
