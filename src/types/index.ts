@@ -5,8 +5,8 @@ export interface Day extends RequiredTypes {
 }
 
 export interface Mood extends RequiredTypes {
-  emoji: string;
-  description: string;
+  emoji?: string;
+  description?: string;
 }
 
 export interface Thought extends RequiredTypes {
