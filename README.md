@@ -1,8 +1,8 @@
 # Intrinsic
 
-To use this application and download on desktop or Android, [open](https://tworker-hansenjacoba.vercel.app/home) in Google chrome and download / add to homepage.
+To use this application and download on desktop or Android, [open](https://intrinsic-view.vercel.app) in Google chrome and download / add to homepage.
 
-To use this application and download on iPhone, [open](https://tworker-hansenjacoba.vercel.app/home) in Safari and add to homepage!
+To use this application and download on iPhone, [open](https://intrinsic-view.vercel.app) in Safari and add to homepage!
 
 ## About
 

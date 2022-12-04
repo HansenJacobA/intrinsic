@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export const moodOptions = [
   { emoji: "😁", description: "happy" },
   { emoji: "😌", description: "peaceful" },
@@ -12,3 +14,12 @@ export const moodOptions = [
   { emoji: "😶", description: "speechless" },
   { emoji: "🤔", description: "pensive" },
 ];
+
+export const createMood = (emoji: string, description: string) => {
+  return {
+    id: nanoid(),
+    emoji,
+    description,
+    createdAt: new Date().toLocaleString(),
+  };
+};

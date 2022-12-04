@@ -1,6 +1,3 @@
-export default function setValueByKey(
-  key: string,
-  value: Record<string, never>
-): void {
+export default function setValueByKey(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }

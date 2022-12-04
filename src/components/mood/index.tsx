@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { Button, Card, CardBody, Flex, Text } from "@chakra-ui/react";
 import Greeting from "../greeting";
-import { moodOptions } from "../../utilities/mood";
-import { useState } from "react";
+import { moodOptions, createMood } from "../../utilities/mood";
+import { upsertDay } from "../../utilities/currentDay";
 
 export default function Mood() {
   const [mood, setMood] = useState("");
@@ -48,6 +49,7 @@ export default function Mood() {
                     onClick={function selectMood() {
                       setMood(emoji);
                       setMoodSelected(true);
+                      upsertDay({ mood: createMood(emoji, description) });
                     }}
                   >
                     <Text fontSize="xs">{description}</Text>
