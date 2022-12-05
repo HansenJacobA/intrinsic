@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
@@ -16,24 +15,9 @@ export const getCurrentDayAndMonth = (): {
 export const getCurrentDayData = (): Day => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = getValueByKey("history");
-
-  // If statement required for iPhone simulator to compile
-  if (history[currentMonth]) {
-    const dayID = history[currentMonth][currentDay];
-    const currentDayData = getValueByKey(dayID);
-    if (currentDayData) return currentDayData;
-  }
-
-  const newCurrentDayData = {
-    id: nanoid(),
-    mood: {},
-    thoughts: [],
-    goals: [],
-    createdAt: new Date().toLocaleString(),
-    updatedAt: new Date().toLocaleString(),
-  };
-  upsertHistory(newCurrentDayData.id);
-  return newCurrentDayData;
+  const dayID = history[currentMonth][currentDay];
+  const currentDayData = getValueByKey(dayID);
+  return currentDayData;
 };
 
 export const upsertDay = (newCurrentDayData: Day): void => {
@@ -44,9 +28,6 @@ export const upsertDay = (newCurrentDayData: Day): void => {
 export const upsertHistory = (newCurrentDayDataID: string): void => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const history = { ...getValueByKey("history") };
-  // If statement required for iPhone simulator to compile
-  if (history[currentMonth]) {
-    history[currentMonth][currentDay] = newCurrentDayDataID;
-  }
+  history[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey("history", history);
 };

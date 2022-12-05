@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+import { upsertHistory } from "../currentDay";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 
@@ -17,5 +19,17 @@ export default function seedUp(): void {
       11: {},
       12: {},
     });
+
+    const newCurrentDayData = {
+      id: nanoid(),
+      mood: {},
+      thoughts: [],
+      goals: [],
+      createdAt: new Date().toLocaleString(),
+      updatedAt: new Date().toLocaleString(),
+    };
+
+    setValueByKey(newCurrentDayData.id, newCurrentDayData);
+    upsertHistory(newCurrentDayData.id);
   }
 }

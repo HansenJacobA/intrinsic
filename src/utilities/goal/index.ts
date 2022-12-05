@@ -5,11 +5,14 @@ import getValueByKey from "../getValueByKey";
 
 export const upsertGoal = (goal: Goal): void => {
   const currentDay = getValueByKey(goal.dayId);
+
   if (goal.id) {
+    goal.updatedAt = new Date().toLocaleString();
     currentDay.goals[goal.index] = goal;
   } else {
     const newGoal = {
       id: nanoid(),
+      dayId: goal.dayId,
       goal: goal.goal,
       completed: false,
       index: goal.index,

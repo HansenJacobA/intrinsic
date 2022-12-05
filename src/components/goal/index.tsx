@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
   FormLabel,
   Switch,
   Text,
@@ -15,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Day } from "../../types";
-import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
+import { getCurrentDayData } from "../../utilities/currentDay";
 import { upsertGoal } from "../../utilities/goal";
 
 export default function Goal() {
@@ -36,17 +37,19 @@ export default function Goal() {
         onChange={function updateCurrentGoal(e) {
           setCurrentGoal(e.target.value);
         }}
+        value={currentGoal}
       />
       <Button
         size="sm"
         onClick={function storeGoal() {
+          if (currentGoal === "") return;
           upsertGoal({
             goal: currentGoal,
             index: currentDayData.goals.length,
             dayId: currentDayData.id,
           });
           setCurrentGoal("");
-          setNewGoalSubmitted(!newGoalSubmitted);
+          setNewGoalSubmitted(true);
         }}
       >
         Save
@@ -55,7 +58,7 @@ export default function Goal() {
       <Accordion allowMultiple width="100%">
         {currentDayData.goals.reverse().map((goal) => {
           return (
-            <AccordionItem key={goal.goal}>
+            <AccordionItem key={goal.id}>
               <AccordionButton>
                 <Flex width="100%" justify="space-between">
                   <Box
@@ -69,21 +72,25 @@ export default function Goal() {
                     {goal.completed ? "Great job! 🎉" : "You can do this! 💪"}
                   </Box>
 
-                  <Flex align="center" gap={2}>
-                    <Switch
-                      id="goal-completion"
-                      onClick={function setGoalCompletion() {
-                        upsertGoal(goal);
-                      }}
-                      isChecked={goal.completed}
-                    />
-                    <FormLabel htmlFor="goal-completion" m={0}>
-                      {goal.completed ? (
-                        <CheckCircleIcon color="green.500" />
-                      ) : (
-                        <SmallCloseIcon color="red.500" />
-                      )}
-                    </FormLabel>
+                  <Flex>
+                    <FormControl display="flex" alignItems="center" gap={2}>
+                      <Switch
+                        id="goal-completion"
+                        defaultChecked={goal.completed}
+                        onChange={function changeGoalCompletion() {
+                          goal.completed = !goal.completed;
+                          upsertGoal(goal);
+                          setNewGoalSubmitted(!newGoalSubmitted);
+                        }}
+                      />
+                      <FormLabel htmlFor="goal-completion" m={0}>
+                        {goal.completed ? (
+                          <CheckCircleIcon color="green.500" />
+                        ) : (
+                          <SmallCloseIcon color="red.500" />
+                        )}
+                      </FormLabel>
+                    </FormControl>
                   </Flex>
                 </Flex>
               </AccordionButton>
