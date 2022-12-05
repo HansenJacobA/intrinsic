@@ -28,6 +28,7 @@ export const getCurrentDayData = (): Day => {
     id: nanoid(),
     mood: {},
     thoughts: [],
+    goals: [],
     createdAt: new Date().toLocaleString(),
     updatedAt: new Date().toLocaleString(),
   };

@@ -30,7 +30,7 @@ export default function Mood() {
             </Text>
             <Button
               size="xs"
-              fontWeight="light"
+              fontWeight="thin"
               onClick={function changeMood() {
                 setMoodSelected(false);
               }}

@@ -15,7 +15,9 @@ export interface Thought extends RequiredTypes {
 
 export interface Goal extends RequiredTypes {
   goal: string;
-  completed: boolean;
+  completed?: boolean;
+  dayId?: Day["id"];
+  index: number;
 }
 
 export interface RequiredTypes {

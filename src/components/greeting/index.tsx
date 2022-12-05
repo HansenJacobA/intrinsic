@@ -12,7 +12,7 @@ export default function Greeting() {
       : "Good evening,";
   return (
     <Flex align="center" justify="center">
-      <Text fontSize="lg" fontStyle="italic">
+      <Text fontSize="lg" fontWeight="light">
         {greeting}
       </Text>
     </Flex>

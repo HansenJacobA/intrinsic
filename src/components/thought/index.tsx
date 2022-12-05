@@ -48,6 +48,7 @@ export default function Thought() {
           setCurrentThought("");
           setNewThoughtSubmitted(!newThoughtSubmitted);
         }}
+        width="100%"
       >
         Save
       </Button>
