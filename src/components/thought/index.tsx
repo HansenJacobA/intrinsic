@@ -26,8 +26,8 @@ export default function Thought() {
   }, [newThoughtSubmitted]);
 
   return (
-    <Flex w={350} align="center" direction="column" gap={5}>
-      <Text fontSize="lg">🍃🍃🌳🌤</Text>
+    <Flex w={300} align="center" direction="column" gap={5}>
+      <Text fontSize="xl">🍃🌳🌤</Text>
       <Textarea
         placeholder=". . ."
         height={275}
@@ -45,6 +45,7 @@ export default function Thought() {
           setNewThoughtSubmitted(!newThoughtSubmitted);
         }}
         width="100%"
+        size="sm"
       >
         Save
       </Button>
@@ -57,11 +58,11 @@ export default function Thought() {
                 <AccordionButton>
                   <Box
                     flex="1"
-                    textAlign="left"
+                    textAlign="center"
                     fontWeight="light"
                     fontSize="sm"
                   >
-                    ☁️ {createdAt.split(",").pop()} ☁️
+                    🍃 {createdAt.split(",").pop()} 💨
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>

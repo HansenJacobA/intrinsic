@@ -1,12 +1,14 @@
 import Template from "../../components/template";
-import Welcome from "../../components/greeting";
+import Greeting from "../../components/greeting";
+import HistoricalData from "../../components/historicalData";
 import { Flex } from "@chakra-ui/react";
 
 export default function History() {
   return (
-    <Flex justify="center" align="center" direction="column">
+    <Flex justify="center" align="center" direction="column" gap={5}>
       <Template />
-      <Welcome />
+      <Greeting />
+      <HistoricalData />
     </Flex>
   );
 }

@@ -4,7 +4,7 @@ import Goal from "../../components/goal";
 
 export default function DailyGoal() {
   return (
-    <Flex justify="center" align="center" direction="column">
+    <Flex justify="center" align="center" direction="column" gap={5}>
       <Template />
       <Goal />
     </Flex>
