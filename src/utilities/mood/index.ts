@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { Day, Mood } from "../../types";
+import { addHistoricalDataMoodData } from "../historicalData.ts";
 
 export const moodOptions = [
   { emoji: "😁", description: "happy" },
@@ -33,6 +34,8 @@ export const upsertMood = (
   emoji: string,
   description: string
 ): Mood => {
+  addHistoricalDataMoodData(description);
+
   return currentDayData.mood.emoji
     ? {
         ...currentDayData.mood,

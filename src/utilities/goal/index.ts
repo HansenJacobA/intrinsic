@@ -2,6 +2,11 @@ import { nanoid } from "nanoid";
 import { Goal } from "../../types";
 import { getCurrentDayData, upsertDay } from "../currentDay";
 import getValueByKey from "../getValueByKey";
+import {
+  addHistoricalDataGoalsCompleteCount,
+  addHistoricalDataGoalCount,
+  calculateAverageNumGoalsPerDay,
+} from "../historicalData.ts";
 
 export const upsertGoal = (goal: Goal): void => {
   const currentDay = getValueByKey(goal.dayId);
@@ -9,6 +14,7 @@ export const upsertGoal = (goal: Goal): void => {
   if (goal.id) {
     goal.updatedAt = new Date().toLocaleString();
     currentDay.goals[goal.index] = goal;
+    addHistoricalDataGoalsCompleteCount(goal.completed ? 1 : -1);
   } else {
     const newGoal = {
       id: nanoid(),
@@ -20,6 +26,9 @@ export const upsertGoal = (goal: Goal): void => {
       updatedAt: new Date().toLocaleString(),
     };
     currentDay.goals.push(newGoal);
+
+    addHistoricalDataGoalCount();
+    calculateAverageNumGoalsPerDay();
   }
   upsertDay(currentDay);
 };

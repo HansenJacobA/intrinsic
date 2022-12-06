@@ -5,7 +5,11 @@ import {
 } from "../currentDay";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
-import { historyContainers, historicalData } from "../historicalData.ts";
+import {
+  historyContainers,
+  historicalData,
+  addHistoricalDataDayCount,
+} from "../historicalData.ts";
 
 export default function seedUp(): void {
   if (getValueByKey("history") === null) {
@@ -13,8 +17,10 @@ export default function seedUp(): void {
     setValueByKey("historicalData", historicalData);
     setValueByKey(newCurrentDayData.id, newCurrentDayData);
     upsertHistory(newCurrentDayData.id);
+    addHistoricalDataDayCount();
   }
   if (getCurrentDayData() === null) {
     setValueByKey(newCurrentDayData.id, newCurrentDayData);
+    addHistoricalDataDayCount();
   }
 }

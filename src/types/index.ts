@@ -42,9 +42,11 @@ export interface HistoryContainers {
 }
 
 export interface HistoricalData {
+  numDays: number;
   goalData: {
     numGoals: number;
     numGoalsComplete: number;
+    numDays: number;
     averageNumGoalsPerDay: number;
   };
   thoughtData: {
@@ -55,6 +57,7 @@ export interface HistoricalData {
     numMoods: number;
     averageNumMoodsPerDay: number;
     averageMood: string;
+    topMood: string;
     moodCounts: {
       happy: { emoji: string; count: number };
       peaceful: { emoji: string; count: number };
