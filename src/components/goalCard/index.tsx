@@ -51,7 +51,7 @@ export default function GoalCard() {
               </StatNumber>
               <StatHelpText>
                 <StatArrow type="increase" />
-                {percentComplete}%
+                {percentComplete || 0}%
               </StatHelpText>
               <StatLabel>Completed</StatLabel>
             </Stat>
