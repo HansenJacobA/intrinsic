@@ -1,14 +1,6 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import getValueByKey from "../../utilities/getValueByKey";
-import seedDown from "../../utilities/seedDown";
 
 export default function ApplicationData() {
   const [numDays, setNumDays] = useState(0);
@@ -94,15 +86,6 @@ export default function ApplicationData() {
           <Text>numMoods: {moodData.numMoods}</Text>
         </CardBody>
       </Card>
-
-      <Button
-        onClick={() => {
-          setReset(!reset);
-          seedDown();
-        }}
-      >
-        Reset Application
-      </Button>
     </Flex>
   );
 }
