@@ -17,12 +17,17 @@ import { getNumGoalsCompleted } from "../../utilities/goal";
 export default function GoalCard() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ goals: [] });
   const [percentComplete, setPercentComplete] = useState(0);
+  const [numGoalsComplete, setNumGoalsComplete] = useState(0);
 
   useEffect(() => {
     const dayData = getCurrentDayData();
     setCurrentDayData(dayData);
+
+    const numCompletedGoals = getNumGoalsCompleted();
+    setNumGoalsComplete(numCompletedGoals);
+
     setPercentComplete(
-      Math.round((getNumGoalsCompleted() / dayData.goals.length) * 1000) / 10
+      Math.round((numCompletedGoals / dayData.goals.length) * 1000) / 10
     );
   }, []);
 
@@ -35,7 +40,7 @@ export default function GoalCard() {
 
         <Stat>
           <StatNumber>
-            {getNumGoalsCompleted()} / {currentDayData.goals.length}
+            {numGoalsComplete} / {currentDayData.goals.length}
           </StatNumber>
           <StatHelpText>
             <StatArrow type="increase" />
