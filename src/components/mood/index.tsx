@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Button, Card, CardBody, Flex, Text } from "@chakra-ui/react";
-import Greeting from "../greeting";
 import { moodOptions, upsertMood } from "../../utilities/mood";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
 import { Day } from "../../types";
@@ -24,7 +23,7 @@ export default function Mood() {
       <CardBody>
         {moodSelected ? (
           <Flex direction="column" textAlign="center">
-            <Text fontSize="lg" mt={3} mb={7}>
+            <Text fontSize="xl" mt={3} mb={7}>
               You are feeling {mood} today
             </Text>
             <Button
@@ -40,7 +39,7 @@ export default function Mood() {
           </Flex>
         ) : (
           <Flex justifyContent="center" direction="column">
-            <Text textAlign="center" fontSize="xl">
+            <Text textAlign="center" fontSize="xl" mb={2}>
               How are you feeling today?
             </Text>
             <Flex align="center" justify="center" direction="column">

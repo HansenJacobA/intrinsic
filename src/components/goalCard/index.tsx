@@ -1,7 +1,8 @@
+import NextLink from "next/link";
 import {
   Card,
   CardBody,
-  Flex,
+  Link,
   Stat,
   StatArrow,
   StatHelpText,
@@ -32,23 +33,31 @@ export default function GoalCard() {
   }, []);
 
   return (
-    <Card w={300}>
-      <CardBody textAlign="center">
-        <Text mb={3} fontSize="lg">
-          Goals
-        </Text>
+    <NextLink href="/daily-goal">
+      <Link
+        _hover={{
+          textDecoration: "none",
+        }}
+      >
+        <Card w={300}>
+          <CardBody textAlign="center">
+            <Text mb={2} fontSize="lg">
+              Goals
+            </Text>
 
-        <Stat>
-          <StatNumber>
-            {numGoalsComplete} / {currentDayData.goals.length}
-          </StatNumber>
-          <StatHelpText>
-            <StatArrow type="increase" />
-            {percentComplete}%
-          </StatHelpText>
-          <StatLabel>Completed</StatLabel>
-        </Stat>
-      </CardBody>
-    </Card>
+            <Stat>
+              <StatNumber>
+                {numGoalsComplete} / {currentDayData.goals.length}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                {percentComplete}%
+              </StatHelpText>
+              <StatLabel>Completed</StatLabel>
+            </Stat>
+          </CardBody>
+        </Card>
+      </Link>
+    </NextLink>
   );
 }
