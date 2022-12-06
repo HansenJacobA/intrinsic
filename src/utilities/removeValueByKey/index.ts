@@ -1,6 +1,9 @@
+import { HistoryContainers, HistoricalData, Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 
-export default function removeValueByKey(key: string) {
+export default function removeValueByKey(
+  key: string
+): HistoryContainers | HistoricalData | Day | Error {
   const valueToRemove = getValueByKey(key);
   if (valueToRemove === null) {
     return new Error("Key does not exist in storage");

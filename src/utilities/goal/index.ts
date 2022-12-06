@@ -24,7 +24,7 @@ export const upsertGoal = (goal: Goal): void => {
   upsertDay(currentDay);
 };
 
-export const getNumGoalsCompleted = () => {
+export const getNumGoalsCompleted = (): number => {
   const dayData = getCurrentDayData();
   return dayData.goals.reduce(
     (sum, { completed }) => sum + (completed ? 1 : 0),

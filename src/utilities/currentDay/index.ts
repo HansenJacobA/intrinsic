@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
@@ -30,4 +31,13 @@ export const upsertHistory = (newCurrentDayDataID: string): void => {
   const history = { ...getValueByKey("history") };
   history[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey("history", history);
+};
+
+export const newCurrentDayData = {
+  id: nanoid(),
+  mood: {},
+  thoughts: [],
+  goals: [],
+  createdAt: new Date().toLocaleString(),
+  updatedAt: new Date().toLocaleString(),
 };

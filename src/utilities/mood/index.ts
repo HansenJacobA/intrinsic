@@ -5,6 +5,7 @@ export const moodOptions = [
   { emoji: "😁", description: "happy" },
   { emoji: "😌", description: "peaceful" },
   { emoji: "🤓", description: "studious" },
+  { emoji: "🥹", description: "proud" },
   { emoji: "🥳", description: "excited" },
   { emoji: "🤪", description: "crazy" },
   { emoji: "😵‍💫", description: "confused" },
@@ -12,6 +13,7 @@ export const moodOptions = [
   { emoji: "🤬", description: "angry" },
   { emoji: "😳", description: "embarrassed" },
   { emoji: "😴", description: "sleepy" },
+  { emoji: "🤧", description: "unwell" },
   { emoji: "😶", description: "speechless" },
   { emoji: "🤔", description: "pensive" },
 ];
