@@ -12,7 +12,7 @@ export default function NavBar() {
       p={3}
       bgColor="#E6DDCB"
       color="black"
-      mb={10}
+      mb={5}
     >
       <NextLink href="/history" passHref>
         <Link

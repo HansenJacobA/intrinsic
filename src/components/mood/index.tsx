@@ -20,12 +20,11 @@ export default function Mood() {
   }, [mood]);
 
   return (
-    <Card>
+    <Card w={300}>
       <CardBody>
-        <Greeting />
         {moodSelected ? (
-          <Flex direction="column" gap={2}>
-            <Text fontSize="xl" m={7}>
+          <Flex direction="column" textAlign="center">
+            <Text fontSize="lg" mt={3} mb={7}>
               You are feeling {mood} today
             </Text>
             <Button
@@ -40,13 +39,8 @@ export default function Mood() {
             </Button>
           </Flex>
         ) : (
-          <Flex
-            textAlign="center"
-            alignContent="center"
-            justifyContent="center"
-            direction="column"
-          >
-            <Text m={7} fontSize="xl">
+          <Flex justifyContent="center" direction="column">
+            <Text textAlign="center" fontSize="xl">
               How are you feeling today?
             </Text>
             <Flex align="center" justify="center" direction="column">

@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { Goal } from "../../types";
-import { upsertDay } from "../currentDay";
+import { getCurrentDayData, upsertDay } from "../currentDay";
 import getValueByKey from "../getValueByKey";
 
 export const upsertGoal = (goal: Goal): void => {
@@ -22,4 +22,12 @@ export const upsertGoal = (goal: Goal): void => {
     currentDay.goals.push(newGoal);
   }
   upsertDay(currentDay);
+};
+
+export const getNumGoalsCompleted = () => {
+  const dayData = getCurrentDayData();
+  return dayData.goals.reduce(
+    (sum, { completed }) => sum + (completed ? 1 : 0),
+    0
+  );
 };

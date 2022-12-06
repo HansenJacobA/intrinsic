@@ -20,8 +20,8 @@ import { getCurrentDayData } from "../../utilities/currentDay";
 import { upsertGoal } from "../../utilities/goal";
 
 export default function Goal() {
-  const [currentGoal, setCurrentGoal] = useState("");
   const [currentDayData, setCurrentDayData] = useState<Day>({ goals: [] });
+  const [currentGoal, setCurrentGoal] = useState("");
   const [newGoalSubmitted, setNewGoalSubmitted] = useState(false);
 
   useEffect(() => {
@@ -55,8 +55,8 @@ export default function Goal() {
         Save
       </Button>
 
-      <Accordion allowMultiple width="100%">
-        {currentDayData.goals.reverse().map((goal) => {
+      <Accordion allowMultiple width="100%" pb={10}>
+        {currentDayData.goals.map((goal) => {
           return (
             <AccordionItem key={goal.id}>
               <AccordionButton>

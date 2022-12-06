@@ -39,12 +39,8 @@ export default function Thought() {
       <Button
         onClick={function storeThought() {
           const createdThought = upsertThought(currentThought);
-          const newCurrentDayData = { ...currentDayData };
-          newCurrentDayData.thoughts = [
-            createdThought,
-            ...currentDayData.thoughts,
-          ];
-          upsertDay(newCurrentDayData);
+          currentDayData.thoughts.push(createdThought);
+          upsertDay(currentDayData);
           setCurrentThought("");
           setNewThoughtSubmitted(!newThoughtSubmitted);
         }}
@@ -53,7 +49,7 @@ export default function Thought() {
         Save
       </Button>
 
-      <Accordion allowMultiple width="100%">
+      <Accordion allowMultiple width="100%" pb={10}>
         {currentDayData.thoughts.map(({ thought, createdAt }) => {
           return (
             <AccordionItem key={thought}>
