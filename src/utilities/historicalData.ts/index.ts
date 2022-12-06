@@ -49,7 +49,7 @@ export const addHistoricalDataMoodData = (description: string) => {
       (historicalData.moodData.numMoods / historicalData.numDays) * 10
     ) / 10;
 
-  historicalData.moodData.topMood = Object.values(
+  const mood: { emoji?: string; count?: number } = Object.values(
     historicalData.moodData.moodCounts
   ).reduce(
     (
@@ -60,7 +60,9 @@ export const addHistoricalDataMoodData = (description: string) => {
       emoji: "😁",
       count: 0,
     }
-  ).emoji;
+  );
+
+  historicalData.moodData.topMood = mood.emoji;
 
   setValueByKey("historicalData", historicalData);
 };
