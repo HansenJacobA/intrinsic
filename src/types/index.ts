@@ -56,7 +56,6 @@ export interface HistoricalData {
   moodData: {
     numMoods: number;
     averageNumMoodsPerDay: number;
-    averageMood: string;
     topMood: string;
     moodCounts: {
       happy: { emoji: string; count: number };

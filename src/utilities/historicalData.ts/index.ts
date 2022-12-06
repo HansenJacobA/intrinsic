@@ -49,8 +49,6 @@ export const addHistoricalDataMoodData = (description: string) => {
       (historicalData.moodData.numMoods / historicalData.numDays) * 10
     ) / 10;
 
-  historicalData.moodData.averageMood = "";
-
   historicalData.moodData.topMood = Object.values(
     historicalData.moodData.moodCounts
   ).reduce(
@@ -82,7 +80,6 @@ export const historicalData = {
   moodData: {
     numMoods: 0,
     averageNumMoodsPerDay: 0,
-    averageMood: "",
     topMood: "",
     moodCounts: {
       happy: { emoji: "😁", count: 0 },

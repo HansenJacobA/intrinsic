@@ -16,7 +16,6 @@ export default function ApplicationData() {
   const [moodData, setMoodData] = useState({
     numMoods: 0,
     averageNumMoodsPerDay: 0,
-    averageMood: "",
     topMood: "",
     moodCounts: {
       happy: { emoji: "😁", count: 0 },
@@ -70,7 +69,6 @@ export default function ApplicationData() {
         <CardHeader textAlign="center">Moods</CardHeader>
         <CardBody textAlign="center">
           <Text>averageNumMoodsPerDay: {moodData.averageNumMoodsPerDay}</Text>
-          <Text>averageMood: {moodData.averageMood}</Text>
           <Text>topMood: {moodData.topMood}</Text>
         </CardBody>
       </Card>
