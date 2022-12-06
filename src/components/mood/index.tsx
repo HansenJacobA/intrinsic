@@ -6,9 +6,9 @@ import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
 import { Day } from "../../types";
 
 export default function Mood() {
-  const [mood, setMood] = useState("");
-  const [moodSelected, setMoodSelected] = useState(false);
   const [currentDayData, setCurrentDayData] = useState<Day>({});
+  const [mood, setMood] = useState<string>(currentDayData.mood?.emoji);
+  const [moodSelected, setMoodSelected] = useState(false);
 
   useEffect(() => {
     const dayData = getCurrentDayData();
@@ -61,6 +61,7 @@ export default function Mood() {
                     onClick={function selectMood() {
                       setMood(emoji);
                       setMoodSelected(true);
+                      if (emoji === mood) return;
 
                       const newMood = upsertMood(
                         currentDayData,

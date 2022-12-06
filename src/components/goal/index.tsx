@@ -49,7 +49,7 @@ export default function Goal() {
             dayId: currentDayData.id,
           });
           setCurrentGoal("");
-          setNewGoalSubmitted(true);
+          setNewGoalSubmitted(!newGoalSubmitted);
         }}
       >
         Save
