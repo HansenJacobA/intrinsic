@@ -1,3 +1,4 @@
+import { Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 
@@ -67,6 +68,22 @@ export const addHistoricalDataMoodData = (description: string) => {
   setValueByKey("historicalData", historicalData);
 };
 
+export const getAllDaysOfMonthData = (month: number) => {
+  const history = getValueByKey("history");
+  const daysOfMonthAndIds = history[month];
+  const dayIdsOrderedByDate = Object.entries(daysOfMonthAndIds).sort(
+    (a: string[], b: string[]) => {
+      return parseInt(a[0]) - parseInt(b[0]);
+    }
+  );
+  const allDaysOfMonthData = dayIdsOrderedByDate.map(function getDayDataById(
+    dayAndId: string[]
+  ): Day {
+    return getValueByKey(dayAndId[1]);
+  });
+  return allDaysOfMonthData;
+};
+
 export const templateMoodData = {
   numMoods: 0,
   averageNumMoodsPerDay: 0,
@@ -108,7 +125,7 @@ export const templateHistoricalData = {
   goalData: templateGoalData,
 };
 
-export const historyContainers = {
+export const historyIdContainers = {
   1: {},
   2: {},
   3: {},
@@ -121,4 +138,19 @@ export const historyContainers = {
   10: {},
   11: {},
   12: {},
+};
+
+export const historyDataContainers = {
+  1: [],
+  2: [],
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  11: [],
+  12: [],
 };
