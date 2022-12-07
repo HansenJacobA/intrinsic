@@ -1,8 +1,7 @@
-import NextLink from "next/link";
 import {
   Card,
   CardBody,
-  Link,
+  Flex,
   Stat,
   StatArrow,
   StatHelpText,
@@ -14,6 +13,7 @@ import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData } from "../../utilities/currentDay";
 import { getNumGoalsCompleted } from "../../utilities/goal";
+import LinkComponent from "../linkComponent";
 
 export default function GoalCard() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ goals: [] });
@@ -33,31 +33,30 @@ export default function GoalCard() {
   }, []);
 
   return (
-    <NextLink href="/daily-goal">
-      <Link
-        _hover={{
-          textDecoration: "none",
-        }}
-      >
-        <Card w={300}>
-          <CardBody textAlign="center">
-            <Text mb={2} fontSize="lg">
-              Goals
-            </Text>
+    <Flex>
+      {LinkComponent({
+        url: "/daily-goal",
+        component: (
+          <Card w={300}>
+            <CardBody textAlign="center">
+              <Text mb={2} fontSize="lg">
+                Goals
+              </Text>
 
-            <Stat>
-              <StatNumber>
-                {numGoalsComplete} / {currentDayData.goals.length}
-              </StatNumber>
-              <StatHelpText>
-                <StatArrow type="increase" />
-                {percentComplete || 0}%
-              </StatHelpText>
-              <StatLabel>Completed</StatLabel>
-            </Stat>
-          </CardBody>
-        </Card>
-      </Link>
-    </NextLink>
+              <Stat>
+                <StatNumber>
+                  {numGoalsComplete} / {currentDayData.goals.length}
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type="increase" />
+                  {percentComplete || 0}%
+                </StatHelpText>
+                <StatLabel>Completed</StatLabel>
+              </Stat>
+            </CardBody>
+          </Card>
+        ),
+      })}
+    </Flex>
   );
 }
