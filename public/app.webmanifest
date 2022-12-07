@@ -1,9 +1,9 @@
 {
   "name": "Work Progress Tracker",
-  "short_name": "Progress",
+  "short_name": "Intr🙏nsic",
   "start_url": "/",
-  "theme_color": "#E6DDCB",
-  "background_color": "#E6DDCB",
+  "theme_color": "#1A202C",
+  "background_color": "#1A202C",
   "scope": "/",
   "display": "standalone",
   "icons": [
@@ -24,5 +24,5 @@
       "purpose": "maskable"
     }
   ],
-  "description": "This app lets you easily record progress accomplishments"
+  "description": "Use this fun application as a friend who is always there to listen and remember everything to enjoy memories with."
 }
