@@ -7,14 +7,14 @@ import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 import {
   historyContainers,
-  historicalData,
+  templateHistoricalData,
   addHistoricalDataDayCount,
 } from "../historicalData.ts";
 
 export default function seedUp(): void {
   if (getValueByKey("history") === null) {
     setValueByKey("history", historyContainers);
-    setValueByKey("historicalData", historicalData);
+    setValueByKey("historicalData", templateHistoricalData);
     setValueByKey(newCurrentDayData.id, newCurrentDayData);
     upsertHistory(newCurrentDayData.id);
     addHistoricalDataDayCount();
