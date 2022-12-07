@@ -13,11 +13,9 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import { CheckCircleIcon, SmallCloseIcon } from "@chakra-ui/icons";
-import {
-  getAllDaysOfMonthData,
-  historyDataContainers,
-} from "../../utilities/historicalData.ts";
+import { historyDataContainers } from "../../utilities/historicalData.ts";
 import { upsertGoal } from "../../utilities/goal";
+import { getAllDaysOfMonthData } from "../../utilities/getDaysOfMonthData";
 
 export default function AllGoalsList() {
   const [monthContainers, setMonthContainers] = useState(historyDataContainers);

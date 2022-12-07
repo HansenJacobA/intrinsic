@@ -9,10 +9,8 @@ import {
   Box,
   Flex,
 } from "@chakra-ui/react";
-import {
-  getAllDaysOfMonthData,
-  historyDataContainers,
-} from "../../utilities/historicalData.ts";
+import { historyDataContainers } from "../../utilities/historicalData.ts";
+import { getAllDaysOfMonthData } from "../../utilities/getDaysOfMonthData";
 
 export default function AllThoughtsList() {
   const [monthContainers, setMonthContainers] = useState(historyDataContainers);

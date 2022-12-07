@@ -1,4 +1,3 @@
-import { Day } from "../../types";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 
@@ -66,22 +65,6 @@ export const addHistoricalDataMoodData = (description: string) => {
   historicalData.moodData.topMood = mood.emoji;
 
   setValueByKey("historicalData", historicalData);
-};
-
-export const getAllDaysOfMonthData = (month: number) => {
-  const history = getValueByKey("history");
-  const daysOfMonthAndIds = history[month];
-  const dayIdsOrderedByDate = Object.entries(daysOfMonthAndIds).sort(
-    (a: string[], b: string[]) => {
-      return parseInt(a[0]) - parseInt(b[0]);
-    }
-  );
-  const allDaysOfMonthData = dayIdsOrderedByDate.map(function getDayDataById(
-    dayAndId: string[]
-  ): Day {
-    return getValueByKey(dayAndId[1]);
-  });
-  return allDaysOfMonthData;
 };
 
 export const templateMoodData = {
