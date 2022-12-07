@@ -11,14 +11,15 @@ export default function Title() {
       >
         <Heading
           as="h1"
-          size="xl"
+          size="2xl"
           noOfLines={1}
           textAlign="center"
-          pb={7}
-          pt={8}
+          pb={6}
+          pt={7}
           w="100vw"
-          bgColor="#272D33"
-          color="white"
+          bgColor="#A0AEC0"
+          color="#F7FAFC"
+          fontWeight="thin"
         >
           Intr🙏nsic
         </Heading>

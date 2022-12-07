@@ -6,13 +6,13 @@ export default function NavBar() {
     <Flex
       w="100vw"
       align="center"
-      fontSize={16}
       justify="center"
       gap={10}
       p={3}
-      bgColor="#E6DDCB"
-      color="black"
-      mb={5}
+      bgColor="#718096"
+      color="#fffffb"
+      fontWeight="thin"
+      fontSize={18}
     >
       <NextLink href="/history" passHref>
         <Link

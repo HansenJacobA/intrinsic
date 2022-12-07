@@ -7,6 +7,8 @@ import {
   AccordionPanel,
   Box,
   Button,
+  Card,
+  CardBody,
   Flex,
   FormControl,
   FormLabel,
@@ -30,15 +32,21 @@ export default function Goal() {
   }, [newGoalSubmitted]);
 
   return (
-    <Flex justify="center" direction="column" gap={5}>
-      <Text fontWeight="light">What would you like to accomplish today?</Text>
-      <Textarea
-        placeholder=". . ."
-        onChange={function updateCurrentGoal(e) {
-          setCurrentGoal(e.target.value);
-        }}
-        value={currentGoal}
-      />
+    <Flex justify="center" direction="column" gap={5} w={300}>
+      <Text fontWeight="thin" fontSize="xl" textAlign="center">
+        What will you accomplish today?
+      </Text>
+      <Card>
+        <CardBody>
+          <Textarea
+            placeholder=". . ."
+            onChange={function updateCurrentGoal(e) {
+              setCurrentGoal(e.target.value);
+            }}
+            value={currentGoal}
+          />
+        </CardBody>
+      </Card>
       <Button
         size="sm"
         onClick={function storeGoal() {

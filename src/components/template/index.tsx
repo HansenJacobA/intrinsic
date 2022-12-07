@@ -25,7 +25,7 @@ export default function Template() {
         />
         <link rel="manifest" href="app.webmanifest" />
         <link rel="apple-touch-icon" href="/icons/icon-512.png" />
-        <meta name="theme-color" content="#E6DDCB" />
+        <meta name="theme-color" content="#1A202C" />
 
         {/* Removes auto zoom in input fields */}
         <meta

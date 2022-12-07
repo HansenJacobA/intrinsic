@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 
 export default function Greeting() {
   const timeNow = new Date().toLocaleTimeString().split(" ");
@@ -12,9 +12,15 @@ export default function Greeting() {
       : "Good evening,";
   return (
     <Flex align="center" justify="center">
-      <Text fontSize="md" fontWeight="light">
+      <Heading
+        as="h2"
+        size="lg"
+        noOfLines={1}
+        textAlign="center"
+        fontWeight="hairline"
+      >
         {greeting}
-      </Text>
+      </Heading>
     </Flex>
   );
 }

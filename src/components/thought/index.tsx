@@ -9,6 +9,8 @@ import {
   AccordionPanel,
   Box,
   Button,
+  Card,
+  CardBody,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Day } from "../../types";
@@ -26,16 +28,23 @@ export default function Thought() {
   }, [newThoughtSubmitted]);
 
   return (
-    <Flex w={300} align="center" direction="column" gap={5}>
-      <Text fontSize="xl">🍃🌳🌤</Text>
-      <Textarea
-        placeholder=". . ."
-        height={275}
-        onChange={function updateThought(e) {
-          setCurrentThought(e.target.value);
-        }}
-        value={currentThought}
-      />
+    <Flex w={300} align="center" direction="column" gap={5} mb={10}>
+      <Text fontSize="xl" textAlign="center">
+        🍃🌳🌤
+      </Text>
+      <Card w={300}>
+        <CardBody>
+          <Textarea
+            placeholder=". . ."
+            height={250}
+            onChange={function updateThought(e) {
+              setCurrentThought(e.target.value);
+            }}
+            value={currentThought}
+          />
+        </CardBody>
+      </Card>
+
       <Button
         onClick={function storeThought() {
           const createdThought = upsertThought(currentThought);
