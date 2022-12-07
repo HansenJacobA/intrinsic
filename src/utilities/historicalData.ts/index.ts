@@ -70,7 +70,7 @@ export const addHistoricalDataMoodData = (description: string) => {
 export const templateMoodData = {
   numMoods: 0,
   averageNumMoodsPerDay: 0,
-  topMood: "",
+  topMood: "😁",
   moodCounts: {
     happy: { emoji: "😁", count: 0 },
     peaceful: { emoji: "😌", count: 0 },
