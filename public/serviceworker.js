@@ -1,59 +1,3 @@
-// const assets = ["/"];
-
-// self.addEventListener("install", (event) => {
-//   event.waitUntil(
-//     caches
-//       .open("assets")
-//       .then((cache) => {
-//         cache.addAll(assets);
-//       })
-//       .catch((error) => {
-//         console.error("Error installing in service worker ", error);
-//       })
-//   );
-// });
-
-// // Stale while revalidate strategy
-// self.addEventListener("fetch", (event) => {
-//   event.respondWith(
-//     caches
-//       .match(event.request)
-//       .then((cachedResponse) => {
-//         // Even if the response is in the cache, we fetch it
-//         // and update the cache for future usage
-//         const fetchPromise = fetch(event.request)
-//           .then((networkResponse) => {
-//             caches
-//               .open("assets")
-//               .then((cache) => {
-//                 cache.put(event.request, networkResponse.clone());
-//                 return networkResponse;
-//               })
-//               .catch((error) => {
-//                 console.log(
-//                   "Error 'put'ting fetch response into cache in service worker. ",
-//                   error
-//                 );
-//               });
-//           })
-//           .catch((error) => {
-//             console.log(
-//               "Error saving fetch response to cache in service worker. ",
-//               error
-//             );
-//           });
-//         // We use the currently cached version if it's there
-//         return cachedResponse || fetchPromise; // cached or a network fetch
-//       })
-//       .catch((error) => {
-//         console.log(
-//           "You're probably offline. Error serving cache in service worker. ",
-//           error
-//         );
-//       })
-//   );
-// });
-
 const assets = ["/"];
 
 self.addEventListener("install", async () => {
@@ -72,10 +16,11 @@ self.addEventListener("fetch", (event) => {
       try {
         const cachedResponse = await caches.match(event.request);
         const networkResponse = await fetch(event.request);
+        const cleanedNetworkResponse = cleanResponse(networkResponse);
         const cache = await caches.open("assets");
-        await cache.put(event.request, networkResponse.clone());
+        await cache.put(event.request, cleanedNetworkResponse.clone());
 
-        return cachedResponse || networkResponse;
+        return cachedResponse || cleanedNetworkResponse;
       } catch (error) {
         console.error(
           "Error either sending cached response or getting and sending a response in service worker ",
@@ -85,3 +30,24 @@ self.addEventListener("fetch", (event) => {
     })()
   );
 });
+
+// Consider using this function to remove redirects from response
+function cleanResponse(response) {
+  const clonedResponse = response.clone();
+
+  // Not all browsers support the Response.body stream, so fall back to reading
+  // the entire body into memory as a blob.
+  const bodyPromise =
+    "body" in clonedResponse
+      ? Promise.resolve(clonedResponse.body)
+      : clonedResponse.blob();
+
+  return bodyPromise.then((body) => {
+    // new Response() is happy when passed either a stream or a Blob.
+    return new Response(body, {
+      headers: clonedResponse.headers,
+      status: clonedResponse.status,
+      statusText: clonedResponse.statusText,
+    });
+  });
+}
