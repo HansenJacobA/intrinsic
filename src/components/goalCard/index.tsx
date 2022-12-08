@@ -1,14 +1,5 @@
-import {
-  Card,
-  CardBody,
-  Flex,
-  Stat,
-  StatArrow,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-  Text,
-} from "@chakra-ui/react";
+import { TriangleUpIcon } from "@chakra-ui/icons";
+import { Card, CardBody, Flex, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData } from "../../utilities/currentDay";
@@ -43,16 +34,18 @@ export default function GoalCard() {
                 Goals
               </Text>
 
-              <Stat>
-                <StatNumber>
+              <Flex align="center" justify="center" direction="column">
+                <Text fontSize="2xl" fontWeight="semibold" color="white">
                   {numGoalsComplete} / {currentDayData.goals.length}
-                </StatNumber>
-                <StatHelpText>
-                  <StatArrow type="increase" />
-                  {percentComplete || 0}%
-                </StatHelpText>
-                <StatLabel>Completed</StatLabel>
-              </Stat>
+                </Text>
+                <Flex align="center" gap={1}>
+                  <TriangleUpIcon color="green.500" />
+                  <Text fontSize={14}>{percentComplete || 0}%</Text>
+                </Flex>
+                <Text fontSize={14} fontWeight="semibold" mt={2}>
+                  Completed
+                </Text>
+              </Flex>
             </CardBody>
           </Card>
         ),

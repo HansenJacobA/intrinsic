@@ -10,24 +10,23 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Switch,
 } from "@chakra-ui/react";
-import { CheckCircleIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import {
   historyDataContainers,
   monthNameByMonthNumber,
 } from "../../utilities/historicalData.ts";
-import { upsertGoal } from "../../utilities/goal";
+
 import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
+import GoalStatusIcon from "../goalStatusIcon";
+import GoalStatusText from "../goalStatusText";
 
 export default function AllGoalsList() {
   const [monthContainers, setMonthContainers] = useState(historyDataContainers);
-  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const allHistoricalData = getAllHistoricalData();
     setMonthContainers(allHistoricalData);
-  }, [refresh]);
+  }, []);
 
   return (
     <Flex
@@ -90,38 +89,27 @@ export default function AllGoalsList() {
                                       fontSize="sm"
                                       gap={2}
                                     >
-                                      <AccordionIcon />
-                                      {goal.completed
-                                        ? "Great job! 🎉"
-                                        : "You can do this! 💪"}
+                                      <GoalStatusText
+                                        completed={goal.completed}
+                                      />
                                     </Box>
 
-                                    <Flex>
+                                    <Flex gap={2}>
                                       <FormControl
                                         display="flex"
                                         alignItems="center"
                                         gap={2}
                                       >
-                                        <Switch
-                                          id="goal-completion"
-                                          defaultChecked={goal.completed}
-                                          onChange={function changeGoalCompletion() {
-                                            goal.completed = !goal.completed;
-                                            upsertGoal(goal);
-                                            setRefresh(!refresh);
-                                          }}
-                                        />
                                         <FormLabel
                                           htmlFor="goal-completion"
                                           m={0}
                                         >
-                                          {goal.completed ? (
-                                            <CheckCircleIcon color="green.500" />
-                                          ) : (
-                                            <SmallCloseIcon color="red.500" />
-                                          )}
+                                          <GoalStatusIcon
+                                            completed={goal.completed}
+                                          />
                                         </FormLabel>
                                       </FormControl>
+                                      <AccordionIcon />
                                     </Flex>
                                   </Flex>
                                 </AccordionButton>

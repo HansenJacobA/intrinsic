@@ -17,7 +17,7 @@ export default function Greeting() {
         size="lg"
         noOfLines={1}
         textAlign="center"
-        fontWeight="hairline"
+        fontWeight="light"
       >
         {greeting}
       </Heading>

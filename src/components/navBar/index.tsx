@@ -9,7 +9,7 @@ export default function NavBar() {
       justify="center"
       gap={10}
       p={3}
-      bgColor="#718096"
+      bgColor="#4c5667"
       color="white"
       fontWeight="light"
       fontSize={18}

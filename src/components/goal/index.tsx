@@ -20,6 +20,8 @@ import { useEffect, useState } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData } from "../../utilities/currentDay";
 import { upsertGoal } from "../../utilities/goal";
+import GoalStatusIcon from "../goalStatusIcon";
+import GoalStatusText from "../goalStatusText";
 
 export default function Goal() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ goals: [] });
@@ -77,7 +79,7 @@ export default function Goal() {
                     gap={2}
                   >
                     <AccordionIcon />
-                    {goal.completed ? "Great job! 🎉" : "You can do this! 💪"}
+                    <GoalStatusText completed={goal.completed} />
                   </Box>
 
                   <Flex>
@@ -85,19 +87,14 @@ export default function Goal() {
                       <Switch
                         id="goal-completion"
                         defaultChecked={goal.completed}
+                        mr={1}
                         onChange={function changeGoalCompletion() {
                           goal.completed = !goal.completed;
                           upsertGoal(goal);
                           setNewGoalSubmitted(!newGoalSubmitted);
                         }}
                       />
-                      <FormLabel htmlFor="goal-completion" m={0}>
-                        {goal.completed ? (
-                          <CheckCircleIcon color="green.500" />
-                        ) : (
-                          <SmallCloseIcon color="red.500" />
-                        )}
-                      </FormLabel>
+                      <GoalStatusIcon completed={goal.completed} />
                     </FormControl>
                   </Flex>
                 </Flex>
