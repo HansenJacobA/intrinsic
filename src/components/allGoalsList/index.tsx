@@ -27,7 +27,7 @@ export default function AllGoalsList() {
   useEffect(() => {
     const allHistoricalData = getAllHistoricalData();
     setMonthContainers(allHistoricalData);
-  }, []);
+  }, [refresh]);
 
   return (
     <Flex
@@ -59,88 +59,81 @@ export default function AllGoalsList() {
                 </AccordionButton>
 
                 <AccordionPanel pb={4}>
-                  {daysInOrder.map((day: Day, index: number) => {
+                  {daysInOrder.map((day: Day) => {
                     return (
-                      <Accordion
-                        allowMultiple
-                        width="100%"
-                        pb={10}
-                        key={day.id}
-                      >
-                        <AccordionItem>
-                          <AccordionButton>
-                            <Flex width="100%" justify="space-between">
-                              <Box
-                                display="flex"
-                                textAlign="left"
-                                fontWeight="light"
-                                fontSize="sm"
-                                gap={2}
-                              >
-                                <AccordionIcon />
-                                Day: {index + 1}
-                              </Box>
-                            </Flex>
-                          </AccordionButton>
+                      <AccordionItem key={day.id}>
+                        <AccordionButton>
+                          <Flex width="100%" justify="space-between">
+                            <Box
+                              display="flex"
+                              textAlign="left"
+                              fontWeight="light"
+                              fontSize="sm"
+                              gap={2}
+                            >
+                              {day.createdAt.split(",")[0]}
+                            </Box>
+                            <AccordionIcon />
+                          </Flex>
+                        </AccordionButton>
 
-                          <AccordionPanel pb={4}>
-                            {day.goals.map((goal: Goal) => {
-                              return (
-                                <AccordionItem key={goal.id}>
-                                  <AccordionButton>
-                                    <Flex width="100%" justify="space-between">
-                                      <Box
+                        <AccordionPanel pb={4}>
+                          {day.goals.map((goal: Goal) => {
+                            return (
+                              <AccordionItem key={goal.id}>
+                                <AccordionButton>
+                                  <Flex width="100%" justify="space-between">
+                                    <Box
+                                      display="flex"
+                                      textAlign="left"
+                                      fontWeight="light"
+                                      fontSize="sm"
+                                      gap={2}
+                                    >
+                                      <AccordionIcon />
+                                      {goal.completed
+                                        ? "Great job! 🎉"
+                                        : "You can do this! 💪"}
+                                    </Box>
+
+                                    <Flex>
+                                      <FormControl
                                         display="flex"
-                                        textAlign="left"
-                                        fontWeight="light"
-                                        fontSize="sm"
+                                        alignItems="center"
                                         gap={2}
                                       >
-                                        <AccordionIcon />
-                                        {goal.completed
-                                          ? "Great job! 🎉"
-                                          : "You can do this! 💪"}
-                                      </Box>
-
-                                      <Flex>
-                                        <FormControl
-                                          display="flex"
-                                          alignItems="center"
-                                          gap={2}
+                                        <Switch
+                                          id="goal-completion"
+                                          defaultChecked={goal.completed}
+                                          onChange={function changeGoalCompletion() {
+                                            goal.completed = !goal.completed;
+                                            upsertGoal(goal);
+                                            setRefresh(!refresh);
+                                          }}
+                                        />
+                                        <FormLabel
+                                          htmlFor="goal-completion"
+                                          m={0}
                                         >
-                                          <Switch
-                                            id="goal-completion"
-                                            defaultChecked={goal.completed}
-                                            onChange={function changeGoalCompletion() {
-                                              goal.completed = !goal.completed;
-                                              upsertGoal(goal);
-                                              setRefresh(!refresh);
-                                            }}
-                                          />
-                                          <FormLabel
-                                            htmlFor="goal-completion"
-                                            m={0}
-                                          >
-                                            {goal.completed ? (
-                                              <CheckCircleIcon color="green.500" />
-                                            ) : (
-                                              <SmallCloseIcon color="red.500" />
-                                            )}
-                                          </FormLabel>
-                                        </FormControl>
-                                      </Flex>
+                                          {goal.completed ? (
+                                            <CheckCircleIcon color="green.500" />
+                                          ) : (
+                                            <SmallCloseIcon color="red.500" />
+                                          )}
+                                        </FormLabel>
+                                      </FormControl>
                                     </Flex>
-                                  </AccordionButton>
+                                  </Flex>
+                                </AccordionButton>
 
-                                  <AccordionPanel pb={4}>
-                                    {goal.goal}
-                                  </AccordionPanel>
-                                </AccordionItem>
-                              );
-                            })}
-                          </AccordionPanel>
-                        </AccordionItem>
-                      </Accordion>
+                                <AccordionPanel pb={4}>
+                                  {goal.goal}
+                                </AccordionPanel>
+                              </AccordionItem>
+                            );
+                          })}
+                        </AccordionPanel>
+                      </AccordionItem>
                     );
                   })}
                 </AccordionPanel>

@@ -67,45 +67,39 @@ export const addHistoricalDataMoodData = (description: string) => {
   setValueByKey("historicalData", historicalData);
 };
 
-export const templateMoodData = {
-  numMoods: 0,
-  averageNumMoodsPerDay: 0,
-  topMood: "😁",
-  moodCounts: {
-    happy: { emoji: "😁", count: 0 },
-    peaceful: { emoji: "😌", count: 0 },
-    studious: { emoji: "🤓", count: 0 },
-    proud: { emoji: "🥹", count: 0 },
-    excited: { emoji: "🥳", count: 0 },
-    crazy: { emoji: "🤪", count: 0 },
-    confused: { emoji: "😵‍💫", count: 0 },
-    sad: { emoji: "😔", count: 0 },
-    angry: { emoji: "🤬", count: 0 },
-    embarrassed: { emoji: "😳", count: 0 },
-    sleepy: { emoji: "😴", count: 0 },
-    unwell: { emoji: "🤧", count: 0 },
-    speechless: { emoji: "😶", count: 0 },
-    pensive: { emoji: "🤔", count: 0 },
-  },
-};
-
-export const templateThoughtData = {
-  numThoughts: 0,
-  averageNumThoughtPerDay: 0,
-};
-
-export const templateGoalData = {
-  numGoals: 0,
-  numGoalsComplete: 0,
-  numDays: 0,
-  averageNumGoalsPerDay: 0,
-};
-
 export const templateHistoricalData = {
   numDays: 0,
-  moodData: templateMoodData,
-  thoughtData: templateThoughtData,
-  goalData: templateGoalData,
+  moodData: {
+    numMoods: 0,
+    averageNumMoodsPerDay: 0,
+    topMood: "😁",
+    moodCounts: {
+      happy: { emoji: "😁", count: 0 },
+      peaceful: { emoji: "😌", count: 0 },
+      studious: { emoji: "🤓", count: 0 },
+      proud: { emoji: "🥹", count: 0 },
+      excited: { emoji: "🥳", count: 0 },
+      crazy: { emoji: "🤪", count: 0 },
+      confused: { emoji: "😵‍💫", count: 0 },
+      sad: { emoji: "😔", count: 0 },
+      angry: { emoji: "🤬", count: 0 },
+      embarrassed: { emoji: "😳", count: 0 },
+      sleepy: { emoji: "😴", count: 0 },
+      unwell: { emoji: "🤧", count: 0 },
+      speechless: { emoji: "😶", count: 0 },
+      pensive: { emoji: "🤔", count: 0 },
+    },
+  },
+  thoughtData: {
+    numThoughts: 0,
+    averageNumThoughtPerDay: 0,
+  },
+  goalData: {
+    numGoals: 0,
+    numGoalsComplete: 0,
+    numDays: 0,
+    averageNumGoalsPerDay: 0,
+  },
 };
 
 export const historyIdContainers = {

@@ -1,23 +1,18 @@
 import { Card, CardBody, Text, Flex, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import getValueByKey from "../../utilities/getValueByKey";
-import { templateGoalData } from "../../utilities/historicalData.ts";
-import { templateThoughtData } from "../../utilities/historicalData.ts";
-import { templateMoodData } from "../../utilities/historicalData.ts";
 import HistoricalDataText from "../historicalDataText";
 import LinkComponent from "../linkComponent";
+import { templateHistoricalData } from "../../utilities/historicalData.ts";
 
 export default function ApplicationData() {
-  const [currentGoalData, setCurrentGoalData] = useState(templateGoalData);
-  const [currentThoughtData, setCurrentThoughtData] =
-    useState(templateThoughtData);
-  const [currentMoodData, setCurrentMoodData] = useState(templateMoodData);
+  const [currentHistoricalData, setHistoricalData] = useState(
+    templateHistoricalData
+  );
 
   useEffect(() => {
     const historicalData = getValueByKey("historicalData");
-    setCurrentGoalData(historicalData.goalData);
-    setCurrentThoughtData(historicalData.thoughtData);
-    setCurrentMoodData(historicalData.moodData);
+    setHistoricalData(historicalData);
   }, []);
 
   return (
@@ -40,17 +35,19 @@ export default function ApplicationData() {
               <Flex gap={5} direction="column" mt={5}>
                 <HistoricalDataText
                   description="Total:"
-                  quantity={currentGoalData.numGoals}
+                  quantity={currentHistoricalData.goalData.numGoals}
                 />
 
                 <HistoricalDataText
                   description="Goals Completed:"
-                  quantity={currentGoalData.numGoalsComplete}
+                  quantity={currentHistoricalData.goalData.numGoalsComplete}
                 />
 
                 <HistoricalDataText
                   description="Average # Goals Per Day:"
-                  quantity={currentGoalData.averageNumGoalsPerDay}
+                  quantity={
+                    currentHistoricalData.goalData.averageNumGoalsPerDay
+                  }
                 />
               </Flex>
             </CardBody>
@@ -76,12 +73,14 @@ export default function ApplicationData() {
               <Flex gap={5} direction="column" mt={5}>
                 <HistoricalDataText
                   description="Total:"
-                  quantity={currentThoughtData.numThoughts}
+                  quantity={currentHistoricalData.thoughtData.numThoughts}
                 />
 
                 <HistoricalDataText
                   description="Average # Thoughts Per Day:"
-                  quantity={currentThoughtData.averageNumThoughtPerDay}
+                  quantity={
+                    currentHistoricalData.thoughtData.averageNumThoughtPerDay
+                  }
                 />
               </Flex>
             </CardBody>
@@ -104,7 +103,7 @@ export default function ApplicationData() {
                 Moods
               </Heading>
 
-              {Object.values(currentMoodData.moodCounts).map(
+              {Object.values(currentHistoricalData.moodData.moodCounts).map(
                 ({ emoji, count }) => (
                   <Text key={emoji} fontWeight="bold">
                     {emoji} : {count}
@@ -115,17 +114,19 @@ export default function ApplicationData() {
               <Flex gap={5} direction="column" mt={5}>
                 <HistoricalDataText
                   description="Total:"
-                  quantity={currentMoodData.numMoods}
+                  quantity={currentHistoricalData.moodData.numMoods}
                 />
 
                 <HistoricalDataText
                   description="Average # Moods Per Day:"
-                  quantity={currentMoodData.averageNumMoodsPerDay}
+                  quantity={
+                    currentHistoricalData.moodData.averageNumMoodsPerDay
+                  }
                 />
 
                 <HistoricalDataText
                   description="Favorite Mood:"
-                  quantity={currentMoodData.topMood}
+                  quantity={currentHistoricalData.moodData.topMood}
                 />
               </Flex>
             </CardBody>

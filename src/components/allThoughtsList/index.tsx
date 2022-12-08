@@ -39,13 +39,7 @@ export default function AllThoughtsList() {
               <AccordionItem key={index}>
                 <AccordionButton>
                   <Flex width="100%" justify="space-between">
-                    <Box
-                      display="flex"
-                      textAlign="left"
-                      fontWeight="light"
-                      fontSize="sm"
-                      gap={2}
-                    >
+                    <Box display="flex" fontWeight="light" fontSize="sm">
                       {monthNameByMonthNumber[index + 1]}
                     </Box>
                     <AccordionIcon />
@@ -53,58 +47,47 @@ export default function AllThoughtsList() {
                 </AccordionButton>
 
                 <AccordionPanel pb={4}>
-                  {daysInOrder.map((day: Day, index: number) => {
+                  {daysInOrder.map((day: Day) => {
                     return (
-                      <Accordion
-                        allowMultiple
-                        width="100%"
-                        pb={10}
-                        key={day.id}
-                      >
-                        <AccordionItem>
-                          <AccordionButton>
-                            <Flex width="100%" justify="space-between">
-                              <Box
-                                display="flex"
-                                textAlign="left"
-                                fontWeight="light"
-                                fontSize="sm"
-                                gap={2}
-                              >
-                                <AccordionIcon />
-                                Day: {index + 1}
-                              </Box>
-                            </Flex>
-                          </AccordionButton>
+                      <AccordionItem key={day.id}>
+                        <AccordionButton>
+                          <Flex width="100%" justify="space-between">
+                            <Box
+                              display="flex"
+                              fontWeight="light"
+                              fontSize="sm"
+                            >
+                              {day.createdAt.split(",")[0]}
+                            </Box>
+                            <AccordionIcon />
+                          </Flex>
+                        </AccordionButton>
 
-                          <AccordionPanel pb={4}>
-                            {day.thoughts.map((thought: Thought) => {
-                              return (
-                                <AccordionItem key={thought.id}>
-                                  <AccordionButton>
-                                    <Flex width="100%" justify="space-between">
-                                      <Box
-                                        display="flex"
-                                        textAlign="left"
-                                        fontWeight="light"
-                                        fontSize="sm"
-                                        gap={2}
-                                      >
-                                        <AccordionIcon />
-                                        {thought.createdAt}
-                                      </Box>
-                                    </Flex>
-                                  </AccordionButton>
+                        <AccordionPanel pb={4}>
+                          {day.thoughts.map((thought: Thought) => {
+                            return (
+                              <AccordionItem key={thought.id}>
+                                <AccordionButton>
+                                  <Flex width="100%" justify="space-between">
+                                    <Box
+                                      display="flex"
+                                      fontWeight="light"
+                                      fontSize="sm"
+                                    >
+                                      {thought.createdAt.split(",")[1]}
+                                    </Box>
+                                    <AccordionIcon />
+                                  </Flex>
+                                </AccordionButton>
 
-                                  <AccordionPanel pb={4}>
-                                    {thought.thought}
-                                  </AccordionPanel>
-                                </AccordionItem>
-                              );
-                            })}
-                          </AccordionPanel>
-                        </AccordionItem>
-                      </Accordion>
+                                <AccordionPanel pb={4}>
+                                  {thought.thought}
+                                </AccordionPanel>
+                              </AccordionItem>
+                            );
+                          })}
+                        </AccordionPanel>
+                      </AccordionItem>
                     );
                   })}
                 </AccordionPanel>

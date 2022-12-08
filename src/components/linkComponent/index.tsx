@@ -5,6 +5,7 @@ export default function LinkComponent({ url, component }) {
   return (
     <NextLink href={url}>
       <Link
+        href={url}
         _hover={{
           textDecoration: "none",
         }}

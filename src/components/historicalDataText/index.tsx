@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export default function HistoricalDataText({
   description,
@@ -8,11 +8,11 @@ export default function HistoricalDataText({
   quantity: number | string;
 }) {
   return (
-    <Text>
-      {description}
+    <Flex direction="column">
+      <Text>{description}</Text>
       <Text fontWeight="bold" fontSize={20}>
         {quantity}
       </Text>
-    </Text>
+    </Flex>
   );
 }
