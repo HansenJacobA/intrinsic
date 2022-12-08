@@ -10,7 +10,7 @@ export default function NavBar() {
       gap={10}
       p={3}
       bgColor="#718096"
-      color="#fffffb"
+      color="white"
       fontWeight="thin"
       fontSize={18}
     >

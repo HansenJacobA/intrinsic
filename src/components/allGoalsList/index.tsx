@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Day, Goal } from "../../types";
 import {
   Accordion,
@@ -13,17 +13,31 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import { CheckCircleIcon, SmallCloseIcon } from "@chakra-ui/icons";
-import { historyDataContainers } from "../../utilities/historicalData.ts";
+import {
+  historyDataContainers,
+  monthNameByMonthNumber,
+} from "../../utilities/historicalData.ts";
 import { upsertGoal } from "../../utilities/goal";
-import { getAllDaysOfMonthData } from "../../utilities/getDaysOfMonthData";
+import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
 
 export default function AllGoalsList() {
   const [monthContainers, setMonthContainers] = useState(historyDataContainers);
   const [refresh, setRefresh] = useState(false);
 
+  useEffect(() => {
+    const allHistoricalData = getAllHistoricalData();
+    setMonthContainers(allHistoricalData);
+  }, []);
+
   return (
-    <Flex justify="center" align="center" direction="column" gap={5} w={300}>
-      All Goals Here
+    <Flex
+      justify="center"
+      align="center"
+      direction="column"
+      gap={5}
+      w={300}
+      mt={4}
+    >
       <Accordion allowMultiple width="100%" pb={10}>
         {Object.values(monthContainers).map(
           (daysInOrder: Day[], index: number) => {
@@ -37,15 +51,10 @@ export default function AllGoalsList() {
                       fontWeight="light"
                       fontSize="sm"
                       gap={2}
-                      onClick={function getSelectedMonthData() {
-                        const monthsData = getAllDaysOfMonthData(index + 1);
-                        monthContainers[index + 1] = monthsData;
-                        setMonthContainers(monthContainers);
-                      }}
                     >
-                      <AccordionIcon />
-                      Month: {index + 1}
+                      {monthNameByMonthNumber[index + 1]}
                     </Box>
+                    <AccordionIcon />
                   </Flex>
                 </AccordionButton>
 
