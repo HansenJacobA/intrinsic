@@ -32,7 +32,7 @@ self.addEventListener("fetch", (event) => {
 });
 
 // Consider using this function to remove redirects from response
-async function cleanResponse(response) {
+function cleanResponse(response) {
   const clonedResponse = response.clone();
 
   // Not all browsers support the Response.body stream, so fall back to reading
@@ -42,20 +42,12 @@ async function cleanResponse(response) {
       ? Promise.resolve(clonedResponse.body)
       : clonedResponse.blob();
 
-  const body = await bodyPromise;
-
-  return new Response(body, {
-    headers: clonedResponse.headers,
-    status: clonedResponse.status,
-    statusText: clonedResponse.statusText,
+  return bodyPromise.then((body) => {
+    // new Response() is happy when passed either a stream or a Blob.
+    return new Response(body, {
+      headers: clonedResponse.headers,
+      status: clonedResponse.status,
+      statusText: clonedResponse.statusText,
+    });
   });
-
-  // return bodyPromise.then((body) => {
-  //   // new Response() is happy when passed either a stream or a Blob.
-  //   return new Response(body, {
-  //     headers: clonedResponse.headers,
-  //     status: clonedResponse.status,
-  //     statusText: clonedResponse.statusText,
-  //   });
-  // });
 }
