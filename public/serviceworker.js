@@ -16,11 +16,10 @@ self.addEventListener("fetch", (event) => {
       try {
         const cachedResponse = await caches.match(event.request);
         const networkResponse = await fetch(event.request);
-        const cleanedNetworkResponse = cleanResponse(networkResponse);
         const cache = await caches.open("assets");
-        await cache.put(event.request, cleanedNetworkResponse.clone());
+        await cache.put(event.request, networkResponse.clone());
 
-        return cachedResponse || cleanedNetworkResponse;
+        return cachedResponse || cleanResponse(networkResponse);
       } catch (error) {
         console.error(
           "Error either sending cached response or getting and sending a response in service worker ",
