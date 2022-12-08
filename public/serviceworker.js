@@ -20,7 +20,7 @@ self.addEventListener("fetch", async (event) => {
     event.respondWith(cachedResponse || networkResponse);
   } catch (error) {
     console.error(
-      "Error either sending cached response to getting and sending a response in service worker ",
+      "Error either sending cached response or getting and sending a response in service worker ",
       error
     );
   }
