@@ -11,7 +11,7 @@ export default function NavBar() {
       p={3}
       bgColor="#718096"
       color="white"
-      fontWeight="thin"
+      fontWeight="light"
       fontSize={18}
     >
       <NextLink href="/history" passHref>
