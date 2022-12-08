@@ -66,8 +66,8 @@ self.addEventListener("install", async () => {
 });
 
 // Stale while revalidate strategy
-self.addEventListener("fetch", async (event) => {
-  await event.respondWith(
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
     (async () => {
       try {
         const cachedResponse = await caches.match(event.request);
