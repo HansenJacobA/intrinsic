@@ -16,8 +16,7 @@ self.addEventListener("fetch", (event) => {
       try {
         const cachedResponse = await caches.match(event.request);
         const networkResponse = await fetch(event.request);
-        const responseClone = networkResponse.clone();
-        const cleanedResponse = await cleanResponse(responseClone);
+        const cleanedResponse = cleanResponse(networkResponse.clone());
         const cache = await caches.open("assets");
         await cache.put(event.request, cleanedResponse);
 
