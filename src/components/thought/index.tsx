@@ -12,6 +12,7 @@ import {
   Card,
   CardBody,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
@@ -81,6 +82,13 @@ export default function Thought() {
           );
         })}
       </Accordion>
+      <Head>
+        {/* Removes auto zoom in input fields */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+        />
+      </Head>
     </Flex>
   );
 }

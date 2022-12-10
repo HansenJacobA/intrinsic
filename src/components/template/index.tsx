@@ -12,6 +12,8 @@ export default function Template() {
 
   return (
     <Flex justify="center" align="center" direction="column">
+      <Title />
+      <NavBar />
       <Head>
         <title>Intrinsic</title>
         <meta property="og:title" content="Intrinsic" key="title" />
@@ -26,15 +28,7 @@ export default function Template() {
         <link rel="manifest" href="app.webmanifest" />
         <link rel="apple-touch-icon" href="/icons/icon-512.png" />
         <meta name="theme-color" content="#1A202C" />
-
-        {/* Removes auto zoom in input fields */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
-        />
       </Head>
-      <Title />
-      <NavBar />
     </Flex>
   );
 }
