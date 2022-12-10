@@ -9,7 +9,7 @@ export default function Home() {
     <Flex justify="center" align="center" direction="column" gap={5} mb={10}>
       <Template />
       <Greeting />
-      <Mood />
+      {/* <Mood /> */}
       <GoalProgressCard />
     </Flex>
   );
