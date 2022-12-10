@@ -1,4 +1,3 @@
-import { CheckCircleIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
@@ -11,7 +10,6 @@ import {
   CardBody,
   Flex,
   FormControl,
-  FormLabel,
   Switch,
   Text,
   Textarea,

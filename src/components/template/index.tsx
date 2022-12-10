@@ -13,8 +13,8 @@ export default function Template() {
   return (
     <Flex justify="center" align="center" direction="column">
       <Head>
-        <title>Intr🙏nsic</title>
-        <meta property="og:title" content="Intr🙏nsic" key="title" />
+        <title>Intrinsic</title>
+        <meta property="og:title" content="Intrinsic" key="title" />
         <meta
           name="description"
           content="Turn your thoughts, moods, and daily goals into an organized library to facilitate structure, stability, organization, and peace.."

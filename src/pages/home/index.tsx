@@ -1,6 +1,6 @@
 import Template from "../../components/template";
 import Mood from "../../components/mood";
-import GoalCard from "../../components/goalCard";
+import GoalProgressCard from "../../components/goalProgressCard";
 import { Flex } from "@chakra-ui/react";
 import Greeting from "../../components/greeting";
 
@@ -10,7 +10,7 @@ export default function Home() {
       <Template />
       <Greeting />
       <Mood />
-      <GoalCard />
+      <GoalProgressCard />
     </Flex>
   );
 }

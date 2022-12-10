@@ -1,4 +1,3 @@
-import { TriangleUpIcon } from "@chakra-ui/icons";
 import { Card, CardBody, Flex, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Day } from "../../types";
@@ -6,7 +5,7 @@ import { getCurrentDayData } from "../../utilities/currentDay";
 import { getNumGoalsCompleted } from "../../utilities/goal";
 import LinkComponent from "../linkComponent";
 
-export default function GoalCard() {
+export default function GoalProgressCard() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ goals: [] });
   const [percentComplete, setPercentComplete] = useState(0);
   const [numGoalsComplete, setNumGoalsComplete] = useState(0);
@@ -38,10 +37,12 @@ export default function GoalCard() {
                 <Text fontSize="2xl" fontWeight="semibold" color="white">
                   {numGoalsComplete} / {currentDayData.goals.length}
                 </Text>
+
                 <Flex align="center" gap={1}>
-                  <TriangleUpIcon color="green.500" />
+                  <Text color="green.500">▲</Text>
                   <Text fontSize={14}>{percentComplete || 0}%</Text>
                 </Flex>
+
                 <Text fontSize={14} fontWeight="semibold" mt={2}>
                   Completed
                 </Text>
