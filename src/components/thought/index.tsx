@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
 import { upsertThought } from "../../utilities/thought";
+import { DisableTextInputZoom } from "../disableTextInputZoom";
 
 export default function Thought() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ thoughts: [] });
@@ -82,13 +83,7 @@ export default function Thought() {
           );
         })}
       </Accordion>
-      <Head>
-        {/* Removes auto zoom in input fields */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
-        />
-      </Head>
+      <DisableTextInputZoom />
     </Flex>
   );
 }
