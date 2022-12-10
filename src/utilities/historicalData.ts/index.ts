@@ -88,7 +88,7 @@ export const addHistoricalDataMoodData = (description: string): void => {
 };
 
 export const templateHistoricalData: HistoricalData = {
-  startingYear: parseInt(getCurrentYear()),
+  startingYear: getCurrentYear(),
   numDays: 0,
   moodData: {
     numMoods: 0,

@@ -28,7 +28,7 @@ export const upsertYearData = (newCurrentDayDataID: string): void => {
   const currentYear = getCurrentYear();
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const yearData = { ...getValueByKey(currentYear) };
-  history[currentMonth][currentDay] = newCurrentDayDataID;
+  yearData[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey(currentYear, yearData);
 };
 
@@ -37,7 +37,7 @@ export const newCurrentDayData = {
   mood: {},
   thoughts: [],
   goals: [],
-  year: parseInt(getCurrentYear()),
+  year: getCurrentYear(),
   createdAt: new Date().toLocaleString(),
   updatedAt: new Date().toLocaleString(),
 };

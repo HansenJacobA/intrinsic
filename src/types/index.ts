@@ -7,7 +7,7 @@ export interface Day extends RequiredTypes {
   goals?: Goal[];
   thoughts?: Thought[];
   mood?: Mood;
-  year?: number;
+  year?: string;
 }
 
 export interface Thought extends RequiredTypes {
@@ -77,7 +77,7 @@ export interface MonthNameByMonthNumber {
 }
 
 export interface HistoricalData {
-  startingYear: number;
+  startingYear: string;
   numDays: number;
   goalData: {
     numGoals: number;

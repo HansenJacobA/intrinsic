@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Day, Thought } from "../../types";
 import {
   Accordion,
@@ -13,17 +13,13 @@ import {
   monthsByNumberAndOrderedDays,
   monthNameByMonthNumber,
 } from "../../utilities/historicalData.ts";
+import { getSelectedMonthDataByYearMonthNum } from "../../utilities/getSelectedMonthData";
 // import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
 
 export default function AllThoughtsList() {
   const [monthContainers, setMonthContainers] = useState(
     monthsByNumberAndOrderedDays
   );
-
-  useEffect(() => {
-    // const allHistoricalData = getAllHistoricalData();
-    // setMonthContainers(allHistoricalData);
-  }, []);
 
   return (
     <Flex
@@ -41,7 +37,14 @@ export default function AllThoughtsList() {
               <AccordionItem key={index}>
                 <AccordionButton>
                   <Flex width="100%" justify="space-between">
-                    <Box display="flex" fontWeight="light" fontSize="sm">
+                    <Box
+                      display="flex"
+                      fontWeight="light"
+                      fontSize="sm"
+                      onClick={function getSelectedMonthData() {
+                        // getSelectedMonthDataByYearMonthNum(1, 1);
+                      }}
+                    >
                       {monthNameByMonthNumber[index + 1]}
                     </Box>
                     <AccordionIcon />

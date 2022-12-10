@@ -13,14 +13,21 @@ import {
 import { getCurrentYear } from "../getCurrentYear";
 
 export default function seedUp(): void {
+  const allYears = getValueByKey("allYears");
+  if (allYears === null) {
+    setValueByKey("allYears", []);
+    setValueByKey("historicalData", templateHistoricalData);
+  }
+
   const currentYear = getCurrentYear();
   if (getValueByKey(currentYear) === null) {
+    const yearData = getValueByKey("allYears");
+    yearData.push(currentYear);
+    setValueByKey("allYears", yearData);
     setValueByKey(currentYear, monthsAndDaysByNumberAndDayIds);
-    setValueByKey("historicalData", templateHistoricalData);
-    setValueByKey(newCurrentDayData.id, newCurrentDayData);
     upsertYearData(newCurrentDayData.id);
-    addHistoricalDataDayCount();
   }
+
   if (getCurrentDayData() === null) {
     setValueByKey(newCurrentDayData.id, newCurrentDayData);
     addHistoricalDataDayCount();
