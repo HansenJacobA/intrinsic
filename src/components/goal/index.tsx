@@ -14,7 +14,6 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData } from "../../utilities/currentDay";

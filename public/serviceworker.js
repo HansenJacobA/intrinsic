@@ -8,7 +8,7 @@ self.addEventListener("install", (event) => {
         cache.addAll(assets);
       })
       .catch((error) => {
-        console.error("Error installing in service worker ", error);
+        console.error("Error adding assets in service worker ", error);
       })
   );
 });
@@ -31,14 +31,14 @@ self.addEventListener("fetch", (event) => {
               })
               .catch((error) => {
                 console.log(
-                  "Error 'put'ting fetch response into cache in service worker. ",
+                  "Error caching fetch response in service worker. ",
                   error
                 );
               });
           })
           .catch((error) => {
             console.log(
-              "Error saving fetch response to cache in service worker. ",
+              "Error dealing with receiving fetch response in service worker. ",
               error
             );
           });
@@ -47,7 +47,7 @@ self.addEventListener("fetch", (event) => {
       })
       .catch((error) => {
         console.log(
-          "You're probably offline. Error serving cache in service worker. ",
+          "You're probably offline. Error serving cache or fetch response in service worker. ",
           error
         );
       })

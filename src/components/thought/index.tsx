@@ -12,7 +12,6 @@ import {
   Card,
   CardBody,
 } from "@chakra-ui/react";
-import Head from "next/head";
 import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
