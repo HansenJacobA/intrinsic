@@ -1,4 +1,4 @@
-const assets = ["/", "/app.webmanifest", "/icons/icon-512.png"];
+const assets = ["/", "/app.webmanifest", "/icons/icon-512.png", "favicon.ico"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
