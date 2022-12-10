@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData } from "../../utilities/currentDay";
 import { upsertGoal } from "../../utilities/goal";
-import { DisableTextInputZoom } from "../disableTextInputZoom";
 import GoalStatusIcon from "../goalStatusIcon";
 import GoalStatusText from "../goalStatusText";
 
@@ -104,7 +103,6 @@ export default function Goal() {
           );
         })}
       </Accordion>
-      {/* <DisableTextInputZoom /> */}
     </Flex>
   );
 }

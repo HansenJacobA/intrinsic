@@ -16,7 +16,6 @@ import { useState, useEffect } from "react";
 import { Day } from "../../types";
 import { getCurrentDayData, upsertDay } from "../../utilities/currentDay";
 import { upsertThought } from "../../utilities/thought";
-import { DisableTextInputZoom } from "../disableTextInputZoom";
 
 export default function Thought() {
   const [currentDayData, setCurrentDayData] = useState<Day>({ thoughts: [] });
@@ -82,7 +81,6 @@ export default function Thought() {
           );
         })}
       </Accordion>
-      {/* <DisableTextInputZoom /> */}
     </Flex>
   );
 }
