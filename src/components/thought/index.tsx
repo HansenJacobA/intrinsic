@@ -62,7 +62,7 @@ export default function Thought() {
       <Accordion allowMultiple width="100%" pb={10}>
         {currentDayData.thoughts.map(({ thought, createdAt }) => {
           return (
-            <AccordionItem key={thought}>
+            <AccordionItem key={createdAt}>
               <h2>
                 <AccordionButton>
                   <Box
