@@ -1,4 +1,10 @@
-const assets = ["/", "/app.webmanifest", "/icons/icon-512.png", "favicon.ico"];
+const assets = [
+  "/",
+  "/app.webmanifest",
+  "/icons/icon-512.png",
+  "/favicon.ico",
+  "/sw-register.js",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

@@ -104,7 +104,7 @@ export default function Goal() {
           );
         })}
       </Accordion>
-      <DisableTextInputZoom />
+      {/* <DisableTextInputZoom /> */}
     </Flex>
   );
 }
