@@ -10,7 +10,7 @@ export default function Home() {
       <Template />
       <Greeting />
       {/* <Mood /> */}
-      <GoalProgressCard />
+      {/* <GoalProgressCard /> */}
     </Flex>
   );
 }
