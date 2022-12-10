@@ -64,7 +64,7 @@ export default function Goal() {
       </Button>
 
       <Accordion allowMultiple width="100%" pb={10}>
-        {currentDayData.goals.map((goal) => {
+        {currentDayData.goals.map(function listCurrentDayGoals(goal) {
           return (
             <AccordionItem key={goal.id}>
               <AccordionButton>

@@ -1,44 +1,64 @@
+import {
+  HistoricalData,
+  MonthNameByMonthNumber,
+  MonthsAndDaysByNumberAndDayIds,
+  MonthsByNumberAndOrderedDays,
+} from "../../types";
+import { getCurrentYear } from "../getCurrentYear";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 
-export const addHistoricalDataDayCount = () => {
+export const addHistoricalDataDayCount = (): void => {
   const historicalData = getValueByKey("historicalData");
+
   historicalData.numDays += 1;
+
   setValueByKey("historicalData", historicalData);
 };
 
-export const addHistoricalDataGoalCount = () => {
+export const addHistoricalDataGoalCount = (): void => {
   const historicalData = getValueByKey("historicalData");
+
   historicalData.goalData.numGoals += 1;
+
   setValueByKey("historicalData", historicalData);
 };
 
-export const addHistoricalDataGoalsCompleteCount = (numCompleted: number) => {
+export const addHistoricalDataGoalsCompleteCount = (
+  numCompleted: number
+): void => {
   const historicalData = getValueByKey("historicalData");
+
   historicalData.goalData.numGoalsComplete += numCompleted;
+
   setValueByKey("historicalData", historicalData);
 };
 
-export const calculateAverageNumGoalsPerDay = () => {
+export const calculateAverageNumGoalsPerDay = (): void => {
   const historicalData = getValueByKey("historicalData");
+
   historicalData.goalData.averageNumGoalsPerDay =
     Math.round(
       (historicalData.goalData.numGoals / historicalData.numDays) * 10
     ) / 10;
+
   setValueByKey("historicalData", historicalData);
 };
 
-export const addHistoricalDataThoughtData = () => {
+export const addHistoricalDataThoughtData = (): void => {
   const historicalData = getValueByKey("historicalData");
+
   historicalData.thoughtData.numThoughts += 1;
+
   historicalData.thoughtData.averageNumThoughtPerDay =
     Math.round(
       (historicalData.thoughtData.numThoughts / historicalData.numDays) * 10
     ) / 10;
+
   setValueByKey("historicalData", historicalData);
 };
 
-export const addHistoricalDataMoodData = (description: string) => {
+export const addHistoricalDataMoodData = (description: string): void => {
   const historicalData = getValueByKey("historicalData");
   historicalData.moodData.numMoods += 1;
 
@@ -49,25 +69,26 @@ export const addHistoricalDataMoodData = (description: string) => {
       (historicalData.moodData.numMoods / historicalData.numDays) * 10
     ) / 10;
 
-  const mood: { emoji?: string; count?: number } = Object.values(
+  const topMood: { emoji?: string; count?: number } = Object.values(
     historicalData.moodData.moodCounts
   ).reduce(
     (
-      max: { emoji: string; count: number },
-      check: { emoji: string; count: number }
-    ) => (check.count >= max.count ? check : max),
+      maxCountRecord: { emoji: string; count: number },
+      nextRecord: { emoji: string; count: number }
+    ) =>
+      nextRecord.count >= maxCountRecord.count ? nextRecord : maxCountRecord,
     {
       emoji: "😁",
       count: 0,
     }
   );
 
-  historicalData.moodData.topMood = mood.emoji;
-
+  historicalData.moodData.topMood = topMood.emoji;
   setValueByKey("historicalData", historicalData);
 };
 
-export const templateHistoricalData = {
+export const templateHistoricalData: HistoricalData = {
+  startingYear: parseInt(getCurrentYear()),
   numDays: 0,
   moodData: {
     numMoods: 0,
@@ -92,7 +113,7 @@ export const templateHistoricalData = {
   },
   thoughtData: {
     numThoughts: 0,
-    averageNumThoughtPerDay: 0,
+    averageNumThoughtsPerDay: 0,
   },
   goalData: {
     numGoals: 0,
@@ -102,7 +123,7 @@ export const templateHistoricalData = {
   },
 };
 
-export const historyIdContainers = {
+export const monthsAndDaysByNumberAndDayIds: MonthsAndDaysByNumberAndDayIds = {
   1: {},
   2: {},
   3: {},
@@ -117,7 +138,7 @@ export const historyIdContainers = {
   12: {},
 };
 
-export const historyDataContainers = {
+export const monthsByNumberAndOrderedDays: MonthsByNumberAndOrderedDays = {
   1: [],
   2: [],
   3: [],
@@ -132,7 +153,7 @@ export const historyDataContainers = {
   12: [],
 };
 
-export const monthNameByMonthNumber = {
+export const monthNameByMonthNumber: MonthNameByMonthNumber = {
   1: "January",
   2: "February",
   3: "March",

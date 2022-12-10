@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
-import { Day, Mood } from "../../types";
+import { Day, Mood, MoodOption } from "../../types";
 import { addHistoricalDataMoodData } from "../historicalData.ts";
 
-export const moodOptions = [
+export const moodOptions: MoodOption[] = [
   { emoji: "😁", description: "happy" },
   { emoji: "😌", description: "peaceful" },
   { emoji: "🤓", description: "studious" },
@@ -19,7 +19,7 @@ export const moodOptions = [
   { emoji: "🤔", description: "pensive" },
 ];
 
-export const createMood = (emoji: string, description: string): Mood => {
+export const createMood = ({ emoji, description }: MoodOption): Mood => {
   return {
     id: nanoid(),
     emoji,
@@ -31,8 +31,7 @@ export const createMood = (emoji: string, description: string): Mood => {
 
 export const upsertMood = (
   currentDayData: Day,
-  emoji: string,
-  description: string
+  { emoji, description }: MoodOption
 ): Mood => {
   addHistoricalDataMoodData(description);
 
@@ -43,5 +42,5 @@ export const upsertMood = (
         description,
         updatedAt: new Date().toLocaleString(),
       }
-    : createMood(emoji, description);
+    : createMood({ emoji, description });
 };

@@ -1,5 +1,7 @@
 import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { NavBarLinkNameAndUrl } from "../../types";
+import { navBarLinkNames } from "../../utilities/navBar";
 
 export default function NavBar() {
   return (
@@ -14,36 +16,20 @@ export default function NavBar() {
       fontWeight="light"
       fontSize={18}
     >
-      <NextLink href="/history" passHref>
-        <Link
-          textDecoration="none"
-          _hover={{
-            textDecoration: "underline",
-          }}
-        >
-          History
-        </Link>
-      </NextLink>
-      <NextLink href="/daily-goal" passHref>
-        <Link
-          textDecoration="none"
-          _hover={{
-            textDecoration: "underline",
-          }}
-        >
-          Daily Goal
-        </Link>
-      </NextLink>
-      <NextLink href="/thoughts" passHref>
-        <Link
-          textDecoration="none"
-          _hover={{
-            textDecoration: "underline",
-          }}
-        >
-          Thoughts
-        </Link>
-      </NextLink>
+      {navBarLinkNames.map(({ linkName, url }: NavBarLinkNameAndUrl) => {
+        return (
+          <NextLink key={linkName} href={url} passHref>
+            <Link
+              textDecoration="none"
+              _hover={{
+                textDecoration: "underline",
+              }}
+            >
+              {linkName}
+            </Link>
+          </NextLink>
+        );
+      })}
     </Flex>
   );
 }

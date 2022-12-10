@@ -12,20 +12,22 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import {
-  historyDataContainers,
+  monthsByNumberAndOrderedDays,
   monthNameByMonthNumber,
 } from "../../utilities/historicalData.ts";
 
-import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
+// import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
 import GoalStatusIcon from "../goalStatusIcon";
 import GoalStatusText from "../goalStatusText";
 
 export default function AllGoalsList() {
-  const [monthContainers, setMonthContainers] = useState(historyDataContainers);
+  const [monthContainers, setMonthContainers] = useState(
+    monthsByNumberAndOrderedDays
+  );
 
   useEffect(() => {
-    const allHistoricalData = getAllHistoricalData();
-    setMonthContainers(allHistoricalData);
+    // const allHistoricalData = getAllHistoricalData();
+    // setMonthContainers(allHistoricalData);
   }, []);
 
   return (

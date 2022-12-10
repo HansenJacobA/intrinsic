@@ -10,17 +10,19 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import {
-  historyDataContainers,
+  monthsByNumberAndOrderedDays,
   monthNameByMonthNumber,
 } from "../../utilities/historicalData.ts";
-import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
+// import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
 
 export default function AllThoughtsList() {
-  const [monthContainers, setMonthContainers] = useState(historyDataContainers);
+  const [monthContainers, setMonthContainers] = useState(
+    monthsByNumberAndOrderedDays
+  );
 
   useEffect(() => {
-    const allHistoricalData = getAllHistoricalData();
-    setMonthContainers(allHistoricalData);
+    // const allHistoricalData = getAllHistoricalData();
+    // setMonthContainers(allHistoricalData);
   }, []);
 
   return (

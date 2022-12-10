@@ -1,12 +1,13 @@
-export interface Day extends RequiredTypes {
-  mood?: Mood;
-  thoughts?: Thought[];
-  goals?: Goal[];
+export interface RequiredTypes {
+  id?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
-
-export interface Mood extends RequiredTypes {
-  emoji?: string;
-  description?: string;
+export interface Day extends RequiredTypes {
+  goals?: Goal[];
+  thoughts?: Thought[];
+  mood?: Mood;
+  year?: number;
 }
 
 export interface Thought extends RequiredTypes {
@@ -20,13 +21,17 @@ export interface Goal extends RequiredTypes {
   index: number;
 }
 
-export interface RequiredTypes {
-  id?: string;
-  createdAt?: string;
-  updatedAt?: string;
+export interface Mood extends RequiredTypes {
+  emoji?: string;
+  description?: string;
 }
 
-export interface HistoryContainers {
+export interface MoodOption {
+  emoji: string;
+  description: string;
+}
+
+export interface MonthsAndDaysByNumberAndDayIds {
   1: { [index: number]: string };
   2: { [index: number]: string };
   3: { [index: number]: string };
@@ -41,7 +46,38 @@ export interface HistoryContainers {
   12: { [index: number]: string };
 }
 
+export interface MonthsByNumberAndOrderedDays {
+  1: Day[];
+  2: Day[];
+  3: Day[];
+  4: Day[];
+  5: Day[];
+  6: Day[];
+  7: Day[];
+  8: Day[];
+  9: Day[];
+  10: Day[];
+  11: Day[];
+  12: Day[];
+}
+
+export interface MonthNameByMonthNumber {
+  1: string;
+  2: string;
+  3: string;
+  4: string;
+  5: string;
+  6: string;
+  7: string;
+  8: string;
+  9: string;
+  10: string;
+  11: string;
+  12: string;
+}
+
 export interface HistoricalData {
+  startingYear: number;
   numDays: number;
   goalData: {
     numGoals: number;
@@ -51,7 +87,7 @@ export interface HistoricalData {
   };
   thoughtData: {
     numThoughts: number;
-    averageNumThoughtPerDay: number;
+    averageNumThoughtsPerDay: number;
   };
   moodData: {
     numMoods: number;
@@ -74,4 +110,19 @@ export interface HistoricalData {
       pensive: { emoji: string; count: number };
     };
   };
+}
+
+export interface HistoricalDataCardText {
+  description: string;
+  value: number | string;
+}
+
+export interface CurrentDayAndMonth {
+  currentDay: number;
+  currentMonth: number;
+}
+
+export interface NavBarLinkNameAndUrl {
+  linkName: string;
+  url: string;
 }

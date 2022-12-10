@@ -56,11 +56,10 @@ export default function Mood() {
                       setMoodSelected(true);
                       if (emoji === mood) return;
 
-                      const newMood = upsertMood(
-                        currentDayData,
+                      const newMood = upsertMood(currentDayData, {
                         emoji,
-                        description
-                      );
+                        description,
+                      });
                       const newCurrentDayData = {
                         ...currentDayData,
                         mood: newMood,

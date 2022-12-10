@@ -1,22 +1,24 @@
 import {
   getCurrentDayData,
   newCurrentDayData,
-  upsertHistory,
+  upsertYearData,
 } from "../currentDay";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 import {
-  historyIdContainers,
+  monthsAndDaysByNumberAndDayIds,
   templateHistoricalData,
   addHistoricalDataDayCount,
 } from "../historicalData.ts";
+import { getCurrentYear } from "../getCurrentYear";
 
 export default function seedUp(): void {
-  if (getValueByKey("history") === null) {
-    setValueByKey("history", historyIdContainers);
+  const currentYear = getCurrentYear();
+  if (getValueByKey(currentYear) === null) {
+    setValueByKey(currentYear, monthsAndDaysByNumberAndDayIds);
     setValueByKey("historicalData", templateHistoricalData);
     setValueByKey(newCurrentDayData.id, newCurrentDayData);
-    upsertHistory(newCurrentDayData.id);
+    upsertYearData(newCurrentDayData.id);
     addHistoricalDataDayCount();
   }
   if (getCurrentDayData() === null) {
