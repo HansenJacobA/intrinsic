@@ -31,68 +31,7 @@ export interface MoodOption {
   description: string;
 }
 
-export interface MonthsAndDaysByNumberAndDayIds {
-  1: { [index: number]: string };
-  2: { [index: number]: string };
-  3: { [index: number]: string };
-  4: { [index: number]: string };
-  5: { [index: number]: string };
-  6: { [index: number]: string };
-  7: { [index: number]: string };
-  8: { [index: number]: string };
-  9: { [index: number]: string };
-  10: { [index: number]: string };
-  11: { [index: number]: string };
-  12: { [index: number]: string };
-}
-
-export interface MonthsByNumberAndOrderedDays {
-  1: Day[];
-  2: Day[];
-  3: Day[];
-  4: Day[];
-  5: Day[];
-  6: Day[];
-  7: Day[];
-  8: Day[];
-  9: Day[];
-  10: Day[];
-  11: Day[];
-  12: Day[];
-}
-
-export interface MonthsByNumberAndOrderedDayIds {
-  1: Day["id"][];
-  2: Day["id"][];
-  3: Day["id"][];
-  4: Day["id"][];
-  5: Day["id"][];
-  6: Day["id"][];
-  7: Day["id"][];
-  8: Day["id"][];
-  9: Day["id"][];
-  10: Day["id"][];
-  11: Day["id"][];
-  12: Day["id"][];
-}
-
-export interface MonthNameByMonthNumber {
-  1: string;
-  2: string;
-  3: string;
-  4: string;
-  5: string;
-  6: string;
-  7: string;
-  8: string;
-  9: string;
-  10: string;
-  11: string;
-  12: string;
-}
-
 export interface HistoricalData {
-  startingYear: string;
   numDays: number;
   goalData: {
     numGoals: number;

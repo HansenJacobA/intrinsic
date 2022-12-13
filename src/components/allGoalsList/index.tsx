@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Day, Goal, MonthsByNumberAndOrderedDays } from "../../types";
+import { Day, Goal } from "../../types";
 import {
   Accordion,
   AccordionButton,
@@ -9,42 +9,27 @@ import {
   Box,
   Flex,
   FormControl,
-  FormLabel,
+  Switch,
+  Text,
 } from "@chakra-ui/react";
-import {
-  monthsByNumberAndOrderedDays,
-  monthNameByMonthNumber,
-} from "../../utilities/historicalData.ts";
 import GoalStatusIcon from "../goalStatusIcon";
 import GoalStatusText from "../goalStatusText";
-import { getDataByYearMonthNum } from "../../utilities/getSelectedMonthData";
-import { getCurrentYear } from "../../utilities/getCurrentYear";
-import { getCurrentDayAndMonth } from "../../utilities/currentDay";
+import getValueByKey from "../../utilities/getValueByKey";
+import { upsertGoal } from "../../utilities/goal";
+import LinkComponent from "../linkComponent";
 
 export default function AllGoalsList() {
-  const [monthContainers, setMonthContainers] =
-    useState<MonthsByNumberAndOrderedDays>(monthsByNumberAndOrderedDays);
-  const [selectedYear, setSelectedYear] = useState<number>(2022);
-  const [selectedMonth, setSelectedMonth] = useState<number>(12);
-
-  function getSelectedMonthData() {
-    const orderedSelectedMonthDaysData = getDataByYearMonthNum(
-      selectedYear,
-      selectedMonth
-    );
-    monthContainers[selectedMonth] = orderedSelectedMonthDaysData;
-    setMonthContainers(monthContainers);
-
-    const currentYear = getCurrentYear();
-    setSelectedYear(parseInt(currentYear));
-    const { currentMonth } = getCurrentDayAndMonth();
-    setSelectedMonth(currentMonth);
-  }
+  const [allGoals, setAllGoals] = useState([]);
+  const [goalUpdated, setGoalUpdated] = useState(false);
 
   useEffect(() => {
-    getSelectedMonthData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [monthContainers, selectedMonth, selectedYear]);
+    const allDayIds = getValueByKey("allDayIds");
+    const getAllGoals = allDayIds.map((id: Day["id"]) => {
+      const day = getValueByKey(id);
+      return day.goals;
+    });
+    setAllGoals(getAllGoals.flat());
+  }, []);
 
   return (
     <Flex
@@ -55,11 +40,20 @@ export default function AllGoalsList() {
       w={300}
       mt={4}
     >
-      <Accordion allowMultiple width="100%" pb={10}>
-        {Object.values(monthContainers).map(
-          (daysInOrder: Day[], index: number) => {
+      {!allGoals.length ? (
+        LinkComponent({
+          url: "/daily-goal",
+          component: (
+            <Text as="h2" fontWeight="thin" fontSize={22} textAlign="center">
+              Click me and go make a goal!
+            </Text>
+          ),
+        })
+      ) : (
+        <Accordion allowMultiple width="100%" pb={10}>
+          {allGoals.map(function listAllGoals(goal: Goal) {
             return (
-              <AccordionItem key={index}>
+              <AccordionItem key={goal.id}>
                 <AccordionButton>
                   <Flex width="100%" justify="space-between">
                     <Box
@@ -69,85 +63,34 @@ export default function AllGoalsList() {
                       fontSize="sm"
                       gap={2}
                     >
-                      {monthNameByMonthNumber[index + 1]}
+                      <AccordionIcon />
+                      <GoalStatusText completed={goal.completed} />
                     </Box>
-                    <AccordionIcon />
+
+                    <Flex>
+                      <FormControl display="flex" alignItems="center" gap={2}>
+                        <Switch
+                          id="goal-completion"
+                          defaultChecked={goal.completed}
+                          mr={1}
+                          onChange={function changeGoalCompletion() {
+                            goal.completed = !goal.completed;
+                            upsertGoal(goal);
+                            setGoalUpdated(!goalUpdated);
+                          }}
+                        />
+                        <GoalStatusIcon completed={goal.completed} />
+                      </FormControl>
+                    </Flex>
                   </Flex>
                 </AccordionButton>
 
-                <AccordionPanel pb={4}>
-                  {daysInOrder.map((day: Day) => {
-                    return (
-                      <AccordionItem key={day.id}>
-                        <AccordionButton>
-                          <Flex width="100%" justify="space-between">
-                            <Box
-                              display="flex"
-                              textAlign="left"
-                              fontWeight="light"
-                              fontSize="sm"
-                              gap={2}
-                            >
-                              {day.createdAt.split(",")[0]}
-                            </Box>
-                            <AccordionIcon />
-                          </Flex>
-                        </AccordionButton>
-
-                        <AccordionPanel pb={4}>
-                          {day.goals.map((goal: Goal) => {
-                            return (
-                              <AccordionItem key={goal.id}>
-                                <AccordionButton>
-                                  <Flex width="100%" justify="space-between">
-                                    <Box
-                                      display="flex"
-                                      textAlign="left"
-                                      fontWeight="light"
-                                      fontSize="sm"
-                                      gap={2}
-                                    >
-                                      <GoalStatusText
-                                        completed={goal.completed}
-                                      />
-                                    </Box>
-
-                                    <Flex gap={2}>
-                                      <FormControl
-                                        display="flex"
-                                        alignItems="center"
-                                        gap={2}
-                                      >
-                                        <FormLabel
-                                          htmlFor="goal-completion"
-                                          m={0}
-                                        >
-                                          <GoalStatusIcon
-                                            completed={goal.completed}
-                                          />
-                                        </FormLabel>
-                                      </FormControl>
-                                      <AccordionIcon />
-                                    </Flex>
-                                  </Flex>
-                                </AccordionButton>
-
-                                <AccordionPanel pb={4}>
-                                  {goal.goal}
-                                </AccordionPanel>
-                              </AccordionItem>
-                            );
-                          })}
-                        </AccordionPanel>
-                      </AccordionItem>
-                    );
-                  })}
-                </AccordionPanel>
+                <AccordionPanel pb={4}>{goal.goal}</AccordionPanel>
               </AccordionItem>
             );
-          }
-        )}
-      </Accordion>
+          })}
+        </Accordion>
+      )}
     </Flex>
   );
 }

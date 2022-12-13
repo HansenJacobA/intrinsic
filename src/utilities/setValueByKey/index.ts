@@ -1,18 +1,8 @@
-import {
-  Day,
-  HistoricalData,
-  MonthsAndDaysByNumberAndDayIds,
-  MonthsByNumberAndOrderedDays,
-} from "../../types";
+import { Day, HistoricalData } from "../../types";
 
 export default function setValueByKey(
   key: string,
-  value:
-    | MonthsAndDaysByNumberAndDayIds
-    | MonthsByNumberAndOrderedDays
-    | HistoricalData
-    | Day
-    | []
+  value: HistoricalData | Day | string | []
 ): void {
   localStorage.setItem(key, JSON.stringify(value));
 }

@@ -1,40 +1,26 @@
-import {
-  getCurrentDayData,
-  newCurrentDayData,
-  upsertYearData,
-} from "../currentDay";
 import getValueByKey from "../getValueByKey";
 import setValueByKey from "../setValueByKey";
 import {
-  monthsAndDaysByNumberAndDayIds,
-  templateHistoricalData,
   addHistoricalDataDayCount,
-  monthsByNumberAndOrderedDayIds,
+  templateHistoricalData,
 } from "../historicalData.ts";
-import { getCurrentYear } from "../getCurrentYear";
+import { newCurrentDayData } from "../currentDay";
 
 export default function seedUp(): void {
-  const allYears = getValueByKey("allYears");
-  if (allYears === null) {
-    setValueByKey("allYears", []);
+  const currentDate = new Date().toLocaleDateString();
+  const lastDateUsed = getValueByKey("lastDateUsed");
+  if (currentDate === lastDateUsed) return;
+  setValueByKey("lastDateUsed", currentDate);
+
+  let allDayIds = getValueByKey("allDayIds");
+  if (allDayIds === null) {
+    setValueByKey("allDayIds", []);
     setValueByKey("historicalData", templateHistoricalData);
   }
 
-  const currentYear = getCurrentYear();
-  if (getValueByKey(currentYear) === null) {
-    const yearData = getValueByKey("allYears");
-    yearData.push(currentYear);
-    setValueByKey("allYears", yearData);
-    setValueByKey(currentYear, monthsAndDaysByNumberAndDayIds);
-    setValueByKey(
-      `${currentYear}OrderedDayIdsByDate`,
-      monthsByNumberAndOrderedDayIds
-    );
-    upsertYearData(currentYear, newCurrentDayData.id);
-  }
-
-  if (getCurrentDayData() === null) {
-    setValueByKey(newCurrentDayData.id, newCurrentDayData);
-    addHistoricalDataDayCount();
-  }
+  allDayIds = getValueByKey("allDayIds");
+  setValueByKey(newCurrentDayData.id, newCurrentDayData);
+  addHistoricalDataDayCount();
+  allDayIds.unshift(newCurrentDayData.id);
+  setValueByKey("allDayIds", allDayIds);
 }
