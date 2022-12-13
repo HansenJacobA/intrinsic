@@ -27,7 +27,7 @@ export default function AllGoalsList() {
   const [selectedYear, setSelectedYear] = useState<number>(2022);
   const [selectedMonth, setSelectedMonth] = useState<number>(12);
 
-  useEffect(() => {
+  function getSelectedMonthData() {
     const orderedSelectedMonthDaysData = getDataByYearMonthNum(
       selectedYear,
       selectedMonth
@@ -39,13 +39,11 @@ export default function AllGoalsList() {
     setSelectedYear(parseInt(currentYear));
     const { currentMonth } = getCurrentDayAndMonth();
     setSelectedMonth(currentMonth);
+  }
 
-    console.log({
-      orderedSelectedMonthDaysData,
-      monthContainers,
-      currentYear,
-      currentMonth,
-    });
+  useEffect(() => {
+    getSelectedMonthData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monthContainers, selectedMonth, selectedYear]);
 
   return (
