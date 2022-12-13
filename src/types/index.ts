@@ -61,6 +61,21 @@ export interface MonthsByNumberAndOrderedDays {
   12: Day[];
 }
 
+export interface MonthsByNumberAndOrderedDayIds {
+  1: Day["id"][];
+  2: Day["id"][];
+  3: Day["id"][];
+  4: Day["id"][];
+  5: Day["id"][];
+  6: Day["id"][];
+  7: Day["id"][];
+  8: Day["id"][];
+  9: Day["id"][];
+  10: Day["id"][];
+  11: Day["id"][];
+  12: Day["id"][];
+}
+
 export interface MonthNameByMonthNumber {
   1: string;
   2: string;

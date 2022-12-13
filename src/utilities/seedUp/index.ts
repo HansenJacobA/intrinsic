@@ -9,6 +9,7 @@ import {
   monthsAndDaysByNumberAndDayIds,
   templateHistoricalData,
   addHistoricalDataDayCount,
+  monthsByNumberAndOrderedDayIds,
 } from "../historicalData.ts";
 import { getCurrentYear } from "../getCurrentYear";
 
@@ -25,7 +26,11 @@ export default function seedUp(): void {
     yearData.push(currentYear);
     setValueByKey("allYears", yearData);
     setValueByKey(currentYear, monthsAndDaysByNumberAndDayIds);
-    upsertYearData(newCurrentDayData.id);
+    setValueByKey(
+      `${currentYear}OrderedDayIdsByDate`,
+      monthsByNumberAndOrderedDayIds
+    );
+    upsertYearData(currentYear, newCurrentDayData.id);
   }
 
   if (getCurrentDayData() === null) {

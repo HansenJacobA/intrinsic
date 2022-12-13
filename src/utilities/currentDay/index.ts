@@ -24,12 +24,20 @@ export const upsertDay = (newCurrentDayData: Day): void => {
   setValueByKey(newCurrentDayData.id, newCurrentDayData);
 };
 
-export const upsertYearData = (newCurrentDayDataID: string): void => {
-  const currentYear = getCurrentYear();
+export const upsertYearData = (
+  currentYear: string,
+  newCurrentDayDataID: string
+): void => {
   const { currentDay, currentMonth } = getCurrentDayAndMonth();
   const yearData = { ...getValueByKey(currentYear) };
   yearData[currentMonth][currentDay] = newCurrentDayDataID;
   setValueByKey(currentYear, yearData);
+
+  const orderedDayIdsByDate = getValueByKey(
+    `${currentYear}OrderedDayIdsByDate`
+  );
+  orderedDayIdsByDate[currentMonth].push(newCurrentDayDataID);
+  setValueByKey(`${currentYear}OrderedDayIdsByDate`, orderedDayIdsByDate);
 };
 
 export const newCurrentDayData = {

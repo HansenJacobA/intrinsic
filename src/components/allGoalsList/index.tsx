@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Day, Goal } from "../../types";
+import { Day, Goal, MonthsByNumberAndOrderedDays } from "../../types";
 import {
   Accordion,
   AccordionButton,
@@ -15,20 +15,38 @@ import {
   monthsByNumberAndOrderedDays,
   monthNameByMonthNumber,
 } from "../../utilities/historicalData.ts";
-
-// import { getAllHistoricalData } from "../../utilities/getAllHistoricalData";
 import GoalStatusIcon from "../goalStatusIcon";
 import GoalStatusText from "../goalStatusText";
+import { getDataByYearMonthNum } from "../../utilities/getSelectedMonthData";
+import { getCurrentYear } from "../../utilities/getCurrentYear";
+import { getCurrentDayAndMonth } from "../../utilities/currentDay";
 
 export default function AllGoalsList() {
-  const [monthContainers, setMonthContainers] = useState(
-    monthsByNumberAndOrderedDays
-  );
+  const [monthContainers, setMonthContainers] =
+    useState<MonthsByNumberAndOrderedDays>(monthsByNumberAndOrderedDays);
+  const [selectedYear, setSelectedYear] = useState<number>(2022);
+  const [selectedMonth, setSelectedMonth] = useState<number>(12);
 
   useEffect(() => {
-    // const allHistoricalData = getAllHistoricalData();
-    // setMonthContainers(allHistoricalData);
-  }, []);
+    const orderedSelectedMonthDaysData = getDataByYearMonthNum(
+      selectedYear,
+      selectedMonth
+    );
+    monthContainers[selectedMonth] = orderedSelectedMonthDaysData;
+    setMonthContainers(monthContainers);
+
+    const currentYear = getCurrentYear();
+    setSelectedYear(parseInt(currentYear));
+    const { currentMonth } = getCurrentDayAndMonth();
+    setSelectedMonth(currentMonth);
+
+    console.log({
+      orderedSelectedMonthDaysData,
+      monthContainers,
+      currentYear,
+      currentMonth,
+    });
+  }, [monthContainers, selectedMonth, selectedYear]);
 
   return (
     <Flex

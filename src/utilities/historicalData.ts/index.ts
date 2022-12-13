@@ -2,6 +2,7 @@ import {
   HistoricalData,
   MonthNameByMonthNumber,
   MonthsAndDaysByNumberAndDayIds,
+  MonthsByNumberAndOrderedDayIds,
   MonthsByNumberAndOrderedDays,
 } from "../../types";
 import { getCurrentYear } from "../getCurrentYear";
@@ -139,6 +140,21 @@ export const monthsAndDaysByNumberAndDayIds: MonthsAndDaysByNumberAndDayIds = {
 };
 
 export const monthsByNumberAndOrderedDays: MonthsByNumberAndOrderedDays = {
+  1: [],
+  2: [],
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  11: [],
+  12: [],
+};
+
+export const monthsByNumberAndOrderedDayIds: MonthsByNumberAndOrderedDayIds = {
   1: [],
   2: [],
   3: [],
