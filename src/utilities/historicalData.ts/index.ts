@@ -34,7 +34,7 @@ export const calculateAverageNumGoalsPerDay = (): void => {
 export const addHistoricalDataThoughtData = (): void => {
   const historicalData = getValueByKey("historicalData");
   historicalData.thoughtData.numThoughts += 1;
-  historicalData.thoughtData.averageNumThoughtPerDay =
+  historicalData.thoughtData.averageNumThoughtsPerDay =
     Math.round(
       (historicalData.thoughtData.numThoughts / historicalData.numDays) * 10
     ) / 10;
