@@ -45,32 +45,34 @@ export default function AllThoughtsList() {
         })
       ) : (
         <Accordion allowMultiple width="100%" pb={10}>
-          {allThoughts.map(function listAllThoughts({
-            thought,
-            createdAt,
-          }: {
-            thought: string;
-            createdAt: string;
-          }) {
-            return (
-              <AccordionItem key={createdAt}>
-                <h2>
-                  <AccordionButton>
-                    <Box
-                      flex="1"
-                      textAlign="center"
-                      fontWeight="light"
-                      fontSize="sm"
-                    >
-                      🍃 {createdAt} 💨
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>{thought}</AccordionPanel>
-              </AccordionItem>
-            );
-          })}
+          {[...allThoughts]
+            .reverse()
+            .map(function listAllThoughts({
+              thought,
+              createdAt,
+            }: {
+              thought: string;
+              createdAt: string;
+            }) {
+              return (
+                <AccordionItem key={createdAt}>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        flex="1"
+                        textAlign="center"
+                        fontWeight="light"
+                        fontSize="sm"
+                      >
+                        🍃 {createdAt} 💨
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>{thought}</AccordionPanel>
+                </AccordionItem>
+              );
+            })}
         </Accordion>
       )}
     </Flex>

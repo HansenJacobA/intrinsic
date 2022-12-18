@@ -60,26 +60,28 @@ export default function Thought() {
       </Button>
 
       <Accordion allowMultiple width="100%" pb={10}>
-        {currentDayData.thoughts.map(({ thought, createdAt }) => {
-          return (
-            <AccordionItem key={createdAt}>
-              <h2>
-                <AccordionButton>
-                  <Box
-                    flex="1"
-                    textAlign="center"
-                    fontWeight="light"
-                    fontSize="sm"
-                  >
-                    🍃 {createdAt.split(",").pop()} 💨
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>{thought}</AccordionPanel>
-            </AccordionItem>
-          );
-        })}
+        {[...currentDayData.thoughts]
+          .reverse()
+          .map(({ thought, createdAt }) => {
+            return (
+              <AccordionItem key={createdAt}>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      flex="1"
+                      textAlign="center"
+                      fontWeight="light"
+                      fontSize="sm"
+                    >
+                      🍃 {createdAt.split(",").pop()} 💨
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>{thought}</AccordionPanel>
+              </AccordionItem>
+            );
+          })}
       </Accordion>
     </Flex>
   );

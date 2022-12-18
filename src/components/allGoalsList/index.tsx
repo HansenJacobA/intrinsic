@@ -51,7 +51,7 @@ export default function AllGoalsList() {
         })
       ) : (
         <Accordion allowMultiple width="100%" pb={10}>
-          {allGoals.map(function listAllGoals(goal: Goal) {
+          {[...allGoals].reverse().map(function listAllGoals(goal: Goal) {
             return (
               <AccordionItem key={goal.id}>
                 <AccordionButton>

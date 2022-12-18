@@ -64,44 +64,46 @@ export default function Goal() {
       </Button>
 
       <Accordion allowMultiple width="100%" pb={10}>
-        {currentDayData.goals.map(function listCurrentDayGoals(goal) {
-          return (
-            <AccordionItem key={goal.id}>
-              <AccordionButton>
-                <Flex width="100%" justify="space-between">
-                  <Box
-                    display="flex"
-                    textAlign="left"
-                    fontWeight="light"
-                    fontSize="sm"
-                    gap={2}
-                  >
-                    <AccordionIcon />
-                    <GoalStatusText completed={goal.completed} />
-                  </Box>
+        {[...currentDayData.goals]
+          .reverse()
+          .map(function listCurrentDayGoals(goal) {
+            return (
+              <AccordionItem key={goal.id}>
+                <AccordionButton>
+                  <Flex width="100%" justify="space-between">
+                    <Box
+                      display="flex"
+                      textAlign="left"
+                      fontWeight="light"
+                      fontSize="sm"
+                      gap={2}
+                    >
+                      <AccordionIcon />
+                      <GoalStatusText completed={goal.completed} />
+                    </Box>
 
-                  <Flex>
-                    <FormControl display="flex" alignItems="center" gap={2}>
-                      <Switch
-                        id="goal-completion"
-                        defaultChecked={goal.completed}
-                        mr={1}
-                        onChange={function changeGoalCompletion() {
-                          goal.completed = !goal.completed;
-                          upsertGoal(goal);
-                          setNewGoalSubmitted(!newGoalSubmitted);
-                        }}
-                      />
-                      <GoalStatusIcon completed={goal.completed} />
-                    </FormControl>
+                    <Flex>
+                      <FormControl display="flex" alignItems="center" gap={2}>
+                        <Switch
+                          id="goal-completion"
+                          defaultChecked={goal.completed}
+                          mr={1}
+                          onChange={function changeGoalCompletion() {
+                            goal.completed = !goal.completed;
+                            upsertGoal(goal);
+                            setNewGoalSubmitted(!newGoalSubmitted);
+                          }}
+                        />
+                        <GoalStatusIcon completed={goal.completed} />
+                      </FormControl>
+                    </Flex>
                   </Flex>
-                </Flex>
-              </AccordionButton>
+                </AccordionButton>
 
-              <AccordionPanel pb={4}>{goal.goal}</AccordionPanel>
-            </AccordionItem>
-          );
-        })}
+                <AccordionPanel pb={4}>{goal.goal}</AccordionPanel>
+              </AccordionItem>
+            );
+          })}
       </Accordion>
     </Flex>
   );
